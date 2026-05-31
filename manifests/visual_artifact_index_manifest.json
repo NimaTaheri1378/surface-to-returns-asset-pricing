@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "created_utc": "2026-05-31T20:38:51.073678+00:00",
+  "created_utc": "2026-05-31T21:01:20.170018+00:00",
   "artifact_count": 50,
   "csv": "outputs\\reports\\visual_artifact_index.csv",
   "html": "outputs\\reports\\visual_artifact_index.html",
   "zip": "outputs\\reports\\visual_artifact_bundle.zip",
-  "zip_sha256": "d8115aefc0484e03c180638a61f1a27c135cd8e7dd34075a9204ac3b75f6a8e9",
-  "zip_bytes": 8155985,
+  "zip_sha256": "b470392ef0ad342d5bee418ae890778d47dde1f73e299ffca1a1bf443053fe9d",
+  "zip_bytes": 8103821,
   "artifacts": [
     {
       "path": "outputs/figures/full/asset_pricing_inference.png",
@@ -155,36 +155,36 @@
     {
       "path": "outputs/figures/full/paper_figure_1_pipeline.png",
       "kind": "paper_figure",
-      "bytes": 260785,
-      "sha256": "b02ce9ebbd685ee16e2ce7cc31042dc2c484949f4265c686e8780ac556e9731b",
-      "width": 3018,
-      "height": 1687,
+      "bytes": 245011,
+      "sha256": "9a187afeea49c9b402da7dfc57ecd639149522b4adaeef9d0f3bd92acf6bdb10",
+      "width": 2834,
+      "height": 1646,
       "pages": null
     },
     {
       "path": "outputs/figures/full/paper_figure_1_pipeline.svg",
       "kind": "paper_figure",
-      "bytes": 117298,
-      "sha256": "db8ca61f70dbd0b095b9608dde58f3ceeb2e963924d0ed041eb2283090541760",
-      "width": 905,
-      "height": 506,
+      "bytes": 116874,
+      "sha256": "425ad51c2ab3b137af0ef04922ab48df661c225cfc98eefac66980eb2fc9a900",
+      "width": 850,
+      "height": 493,
       "pages": null
     },
     {
       "path": "outputs/figures/full/paper_figure_2_surface_quality.png",
       "kind": "paper_figure",
-      "bytes": 303327,
-      "sha256": "6d293d7510980dc78cf7ddbe949173d3893b8cd3e233c94ea3c77fe4107ed9d6",
-      "width": 3114,
+      "bytes": 298733,
+      "sha256": "cd6ac291642e38fa804d5ae7c544dfe30a96c6172c67f36abd8f62d61eeb043c",
+      "width": 2834,
       "height": 1729,
       "pages": null
     },
     {
       "path": "outputs/figures/full/paper_figure_2_surface_quality.svg",
       "kind": "paper_figure",
-      "bytes": 123502,
-      "sha256": "7278e21bc52a06d0075de7b46d6b1116716f1241674ea2f6fdb4d48930f9733e",
-      "width": 933,
+      "bytes": 123894,
+      "sha256": "435aa746eb658a6d9c74d7649dd49268e44c4d44d3fe2856245d451f68c8839f",
+      "width": 850,
       "height": 518,
       "pages": null
     },
@@ -201,7 +201,7 @@
       "path": "outputs/figures/full/paper_figure_3_sdf_interpretation.svg",
       "kind": "paper_figure",
       "bytes": 131732,
-      "sha256": "3feeba582fb69006ce8152ef14c26098d90e304f913c81077b01617328120056",
+      "sha256": "827e2853761674e9144447b8efeb7518d37f04a50d51f3ba092779466ffb90c5",
       "width": 885,
       "height": 531,
       "pages": null
@@ -209,36 +209,36 @@
     {
       "path": "outputs/figures/full/paper_figure_4_return_evidence.png",
       "kind": "paper_figure",
-      "bytes": 514521,
-      "sha256": "8c4ee3782325ab762746977687eb2f484556a2fc67d0a1845594117b53ff85b2",
-      "width": 3055,
+      "bytes": 501886,
+      "sha256": "3edd65836c51da7eaa167919b6c53c54ab155c8526d621de967ed3676cb00674",
+      "width": 2938,
       "height": 1771,
       "pages": null
     },
     {
       "path": "outputs/figures/full/paper_figure_4_return_evidence.svg",
       "kind": "paper_figure",
-      "bytes": 151977,
-      "sha256": "187e762a4eae59d2843a35257193c50f313ad44cccc9023ca5354691bf76516a",
-      "width": 916,
+      "bytes": 147949,
+      "sha256": "a792247f84227d9b39ebf249a1b0b08fbcd5460644e210b46ce22dfefc093a84",
+      "width": 881,
       "height": 531,
       "pages": null
     },
     {
       "path": "outputs/figures/full/paper_figure_5_mechanisms_interpretation.png",
       "kind": "paper_figure",
-      "bytes": 296074,
-      "sha256": "d973dc15721851136fc2e76dde14090354abf624feba9c144090f5b255abf861",
-      "width": 3272,
+      "bytes": 284309,
+      "sha256": "fb40127c6039b7667e5f53c41cdaf4141c64fa47057409dfee7d0ad551db95fa",
+      "width": 2951,
       "height": 1771,
       "pages": null
     },
     {
       "path": "outputs/figures/full/paper_figure_5_mechanisms_interpretation.svg",
       "kind": "paper_figure",
-      "bytes": 138970,
-      "sha256": "396e3301d55381de115852abdf9bfbc6aabd5f382efbd22151c945581d0d05aa",
-      "width": 981,
+      "bytes": 137589,
+      "sha256": "4c9f783d2247d7fc9eb7541e5b471c19a26819cfef5173c285d4cb8511df3e9a",
+      "width": 885,
       "height": 531,
       "pages": null
     },
@@ -407,8 +407,8 @@
     {
       "path": "outputs/reports/visual_figure_package.pdf",
       "kind": "pdf_package",
-      "bytes": 1341028,
-      "sha256": "6f015c8efbcc839c57a97630b984b71e062e9b29be5445837b86a6bbd08244c2",
+      "bytes": 1326262,
+      "sha256": "3fe78a5df24472cb70fcee43948f66b969cf16afd7a6be89efc7c888a4160ff5",
       "width": null,
       "height": null,
       "pages": 9

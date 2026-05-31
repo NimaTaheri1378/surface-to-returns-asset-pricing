@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import textwrap
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -97,17 +98,27 @@ def add_note(ax, lines: list[str], title: str = "Evidence Summary") -> None:
             edgecolor="none",
         )
     )
-    ax.text(0.07, 0.84, title, transform=ax.transAxes, fontsize=13, weight="bold", color=PALETTE["ink"])
-    y = 0.69
+    ax.text(0.075, 0.84, title, transform=ax.transAxes, fontsize=13, weight="bold", color=PALETTE["ink"])
+    y = 0.68
     for line in lines:
-        ax.text(0.08, y, f"- {line}", transform=ax.transAxes, fontsize=9.3, color=PALETTE["ink"], va="top", wrap=True)
-        y -= 0.18
+        wrapped = textwrap.fill(f"- {line}", width=60, subsequent_indent="  ")
+        ax.text(
+            0.085,
+            y,
+            wrapped,
+            transform=ax.transAxes,
+            fontsize=8.8,
+            color=PALETTE["ink"],
+            va="top",
+            linespacing=1.12,
+        )
+        y -= 0.075 * (wrapped.count("\n") + 1) + 0.035
 
 
 def draw_flow(ax, labels: list[str]) -> None:
     ax.axis("off")
-    x0, y0, w, h = 0.035, 0.24, 0.145, 0.42
-    gap = 0.018
+    x0, y0, w, h = 0.025, 0.18, 0.148, 0.62
+    gap = 0.013
     colors = [PALETTE["blue"], PALETTE["teal"], PALETTE["purple"], PALETTE["orange"], PALETTE["gold"], PALETTE["green"]]
     for idx, label in enumerate(labels):
         x = x0 + idx * (w + gap)
@@ -124,8 +135,9 @@ def draw_flow(ax, labels: list[str]) -> None:
             )
         )
         ax.add_patch(Rectangle((x, y0), 0.010, h, transform=ax.transAxes, color=colors[idx], lw=0))
-        ax.text(x + 0.025, y0 + 0.29, str(idx + 1), transform=ax.transAxes, fontsize=15, weight="bold", color=colors[idx])
-        ax.text(x + 0.062, y0 + 0.30, label, transform=ax.transAxes, fontsize=9.4, color=PALETTE["ink"], va="center", linespacing=1.12)
+        center_y = y0 + h / 2
+        ax.text(x + 0.024, center_y, str(idx + 1), transform=ax.transAxes, fontsize=15, weight="bold", color=colors[idx], va="center")
+        ax.text(x + 0.058, center_y, label, transform=ax.transAxes, fontsize=8.9, color=PALETTE["ink"], va="center", linespacing=1.08)
         if idx < len(labels) - 1:
             arrow_x = x + w + gap * 0.30
             ax.add_patch(
@@ -164,8 +176,8 @@ def metric_strip(ax, metrics: list[tuple[str, str, str, str]]) -> None:
 
 
 def figure_1(root: Path, ctx: dict) -> list[str]:
-    fig = plt.figure(figsize=(13.5, 7.4), facecolor="white")
-    gs = GridSpec(3, 2, figure=fig, height_ratios=[0.72, 1.15, 1.2], width_ratios=[1.15, 0.85], hspace=0.35, wspace=0.28)
+    fig = plt.figure(figsize=(13.5, 7.2), facecolor="white")
+    gs = GridSpec(3, 2, figure=fig, height_ratios=[0.70, 0.58, 1.15], width_ratios=[1.12, 0.88], hspace=0.14, wspace=0.30)
     fig.suptitle("Figure 1. Data and Modeling Stack", x=0.04, y=0.98, ha="left", fontsize=20, weight="bold", color=PALETTE["ink"])
     fig.text(0.04, 0.925, "WRDS extraction, no-arbitrage surface construction, characteristics, costs, inference, and interpretation at the usable 1996-2024 scale.", fontsize=10.5, color=PALETTE["muted"])
 
@@ -178,7 +190,7 @@ def figure_1(root: Path, ctx: dict) -> list[str]:
             ("SDF", f"{safe_float(ctx['sdf'].get('pricing_error', {}).get('rms')):.3f}", f"{fmt_int(ctx['sdf'].get('oos_months'))} OOS months", PALETTE["teal"]),
         ],
     )
-    draw_flow(fig.add_subplot(gs[1, :]), ["WRDS\nlinkage", "SVI/SSVI\nsurfaces", "CRSP/Compustat\ncharacteristics", "GPU/SDF\nmodels", "TAQ-cost\nportfolios", "Inference and\ninterpretation"])
+    draw_flow(fig.add_subplot(gs[1, :]), ["WRDS\nlinkage", "SVI/SSVI\nsurfaces", "Firm\ncharacteristics", "GPU/SDF\nmodels", "TAQ-cost\nportfolios", "Inference and\ninterpretation"])
 
     ax = fig.add_subplot(gs[2, 0])
     labels = ["Panel rows", "OOS predictions", "SDF assets"]
@@ -302,8 +314,14 @@ def figure_4(root: Path, ctx: dict) -> list[str]:
 
     ax = fig.add_subplot(gs[0, 1])
     plot_summary = summary[summary["return_type"].isin(["gross", "beta_neutral_gross", "net", "taq_net"])].copy()
+    summary_labels = {
+        "gross": "Gross",
+        "beta_neutral_gross": "Beta-neutral",
+        "net": "Net",
+        "taq_net": "TAQ net",
+    }
     colors = [PALETTE["green"] if value > 0 else PALETTE["red"] for value in plot_summary["annualized_sharpe"]]
-    ax.barh(plot_summary["return_type"].map(pretty_label), plot_summary["annualized_sharpe"], color=colors)
+    ax.barh(plot_summary["return_type"].map(summary_labels), plot_summary["annualized_sharpe"], color=colors)
     ax.axvline(0, color=PALETTE["ink"], linewidth=0.8)
     ax.set_xlabel("Annualized Sharpe")
     style_ax(ax, "Portfolio Summary", "x")
@@ -311,7 +329,12 @@ def figure_4(root: Path, ctx: dict) -> list[str]:
     ax = fig.add_subplot(gs[1, 0])
     target = alphas[alphas["portfolio"].isin(["proposal_beta_neutral_ls", "proposal_net_ls", "proposal_taq_net_ls"])].copy()
     target = target.sort_values("alpha_annualized")
-    ax.barh(target["portfolio"].map(pretty_label), target["alpha_annualized"], color=PALETTE["red"])
+    alpha_labels = {
+        "proposal_beta_neutral_ls": "Beta-neutral LS",
+        "proposal_net_ls": "Net LS",
+        "proposal_taq_net_ls": "TAQ-net LS",
+    }
+    ax.barh(target["portfolio"].map(alpha_labels), target["alpha_annualized"], color=PALETTE["red"])
     for idx, row in target.reset_index(drop=True).iterrows():
         ax.text(row["alpha_annualized"], idx, f"  t={row['alpha_t_newey_west']:.2f}", va="center", fontsize=8)
     ax.axvline(0, color=PALETTE["ink"], linewidth=0.8)
@@ -373,7 +396,7 @@ def figure_5(root: Path, ctx: dict) -> list[str]:
             "Official Reg SHO pilot evidence is included as a short-sale mechanism diagnostic.",
             "FRED, BLS, BEA, EIA, and SEC EDGAR controls are included with a one-month availability lag.",
             "TreeSHAP links the return model to rates, volatility, financing, oil, and factor-state variables.",
-            "Cost-aware returns are reported beside pricing-kernel and mechanism diagnostics.",
+            "Cost-aware returns accompany pricing-kernel diagnostics.",
         ],
         "Empirical Interpretation",
     )
