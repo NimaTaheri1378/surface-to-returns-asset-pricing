@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surface-to-Returns Visual Report</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1f2933;
+  --muted: #5b6573;
+  --line: #d8dee6;
+  --panel: #f6f8fb;
+  --good: #2f7d32;
+  --mixed: #6f8f51;
+  --caution: #c45a42;
+  --blocked: #8f4f9f;
+  --blue: #356da3;
+  --teal: #3d9292;
+  --gold: #c77d20;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+}
+header {
+  padding: 42px min(6vw, 72px) 26px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 8px 0 8px;
+  font-size: clamp(34px, 4.5vw, 64px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin: 0;
+  max-width: 980px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.45;
+}
+main { padding: 28px min(6vw, 72px) 54px; }
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.metric {
+  min-height: 132px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 14px 16px 14px;
+  border-top: 5px solid var(--blue);
+}
+.metric-good { border-top-color: var(--good); }
+.metric-mixed { border-top-color: var(--mixed); }
+.metric-caution { border-top-color: var(--caution); }
+.metric-blocked { border-top-color: var(--blocked); }
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.metric strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1.05;
+}
+.metric p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.section-head {
+  margin: 34px 0 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: end;
+}
+h2 { margin: 0; font-size: 25px; letter-spacing: 0; }
+.section-head p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 660px;
+  line-height: 1.4;
+}
+.deck-link {
+  display: inline-block;
+  margin-top: 16px;
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 800;
+  background: #f4f8fc;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 18px;
+}
+.figure-card {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.figure-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.figure-card figcaption {
+  display: grid;
+  gap: 7px;
+  padding: 13px 14px 14px;
+}
+.figure-card figcaption span {
+  color: var(--muted);
+  line-height: 1.35;
+}
+.figure-links {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.interpretation {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.callout {
+  border-left: 5px solid var(--caution);
+  background: #fff7f4;
+  padding: 18px 20px;
+  border-radius: 8px;
+}
+.callout p { margin: 0; line-height: 1.5; }
+.list-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 18px;
+  background: var(--panel);
+}
+.list-panel ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  line-height: 1.55;
+}
+footer {
+  padding: 18px min(6vw, 72px) 34px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) {
+  header { padding-top: 28px; }
+  main { padding-top: 22px; }
+  .interpretation { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .metric strong { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Proposal evidence</div>
+    <h1>Surface-to-Returns Visual Report</h1>
+    <p class="subtitle">A public-safe visual summary of the verified implementation artifacts: no-arbitrage option-surface construction, full characteristic/state integration, GPU and SDF models, cost-aware portfolio evidence, interpretation, and readiness limits.</p>
+  </header>
+  <main>
+    <section class="metrics">
+      <article class="metric metric-mixed"><span>Readiness</span><strong>15 pass</strong><p>3 negative-result, 0 blocked</p></article><article class="metric metric-good"><span>Usable Sample</span><strong>1996-2024</strong><p>345 completed shards; 15 skipped</p></article><article class="metric metric-good"><span>SSVI Gates</span><strong>100.0%</strong><p>34,800 date-security surfaces</p></article><article class="metric metric-good"><span>Characteristics</span><strong>33</strong><p>670,562 firm-month rows</p></article><article class="metric metric-caution"><span>GPU Signal</span><strong>0.002</strong><p>top-bottom -0.0005 per month</p></article><article class="metric metric-caution"><span>Portfolio Net</span><strong>-0.15%</strong><p>TAQ-net -0.37% per month</p></article><article class="metric metric-caution"><span>FF5+UMD Alpha</span><strong>-0.99</strong><p>Newey-West t-stat for proposal net long-short alpha</p></article><article class="metric metric-good"><span>SDF</span><strong>0.116</strong><p>227 OOS months; three-branch conditional autoencoder</p></article><article class="metric metric-mixed"><span>Reg SHO Mechanism</span><strong>-0.80</strong><p>Target triple-interaction t-stat; weak mechanism evidence</p></article><article class="metric metric-good"><span>External Controls</span><strong>FRED,BLS,BEA,EIA</strong><p>BEA/EIA/SEC runtime checks loaded without storing secrets</p></article>
+    </section>
+
+    <section class="interpretation">
+      <div class="callout">
+        <p><strong>Current interpretation.</strong> The proposal-grade pipeline is implemented and scaled over the usable 1996-2024 WRDS sample, with SVI/SSVI no-arbitrage diagnostics passing at scale. The latest expanded-feature return-prediction and portfolio evidence is weak to negative, so the report treats it as disciplined evidence rather than a positive alpha claim.</p>
+      </div>
+      <div class="list-panel">
+        <strong>Open readiness items</strong>
+        <ul><li>Factor alphas, HJ/GRS, Newey-West, bootstrap inference: NEGATIVE_RESULT</li><li>GPU walk-forward return model: NEGATIVE_RESULT</li><li>Sector-balanced beta-hedged buffered portfolio: NEGATIVE_RESULT</li><li>Reg SHO pilot mechanism test: PASS_WEAK_RESULT</li></ul>
+        <a class="deck-link" href="visual_slide_deck.html">Open visual slide deck</a>
+        <a class="deck-link" href="visual_figure_package.pdf">Open PDF package</a>
+        <a class="deck-link" href="visual_artifact_index.html">Open artifact index</a>
+        <a class="deck-link" href="visual_release_audit.html">Open release audit</a>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <h2>Figure Gallery</h2>
+      <p>Each panel links to the generated PNG and, when available, its SVG companion. All figures are built from non-raw manifests, reports, and model diagnostics.</p>
+    </div>
+    <section class="gallery">
+      <figure class="figure-card" data-group="overview"><a href="../figures/full/visual_abstract.png"><img src="../figures/full/visual_abstract.png" alt="Visual Abstract"></a><figcaption><strong>Visual Abstract</strong><span>Presentation-ready 16:9 summary of the implemented evidence stack, readiness status, and honest return boundary.</span><div class="figure-links"><a href="../figures/full/visual_abstract.png">PNG</a><a href="../figures/full/visual_abstract.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="paper"><a href="../figures/full/paper_figure_1_pipeline.png"><img src="../figures/full/paper_figure_1_pipeline.png" alt="Paper Figure 1: Pipeline"></a><figcaption><strong>Paper Figure 1: Pipeline</strong><span>Numbered figure summarizing the WRDS-to-model pipeline, sample coverage, and readiness status.</span><div class="figure-links"><a href="../figures/full/paper_figure_1_pipeline.png">PNG</a><a href="../figures/full/paper_figure_1_pipeline.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="paper"><a href="../figures/full/paper_figure_2_surface_quality.png"><img src="../figures/full/paper_figure_2_surface_quality.png" alt="Paper Figure 2: Surface Quality"></a><figcaption><strong>Paper Figure 2: Surface Quality</strong><span>Numbered figure showing SSVI no-arbitrage pass share, fit error, theta projection, and surface constraints.</span><div class="figure-links"><a href="../figures/full/paper_figure_2_surface_quality.png">PNG</a><a href="../figures/full/paper_figure_2_surface_quality.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="paper"><a href="../figures/full/paper_figure_3_sdf_interpretation.png"><img src="../figures/full/paper_figure_3_sdf_interpretation.png" alt="Paper Figure 3: SDF Interpretation"></a><figcaption><strong>Paper Figure 3: SDF Interpretation</strong><span>Numbered figure tying the flagship conditional autoencoder SDF to integrated gradients and TreeSHAP evidence.</span><div class="figure-links"><a href="../figures/full/paper_figure_3_sdf_interpretation.png">PNG</a><a href="../figures/full/paper_figure_3_sdf_interpretation.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="paper"><a href="../figures/full/paper_figure_4_return_evidence.png"><img src="../figures/full/paper_figure_4_return_evidence.png" alt="Paper Figure 4: Return Evidence"></a><figcaption><strong>Paper Figure 4: Return Evidence</strong><span>Numbered figure presenting cost-aware portfolio wealth, Sharpe ratios, FF5+UMD alphas, and trading frictions.</span><div class="figure-links"><a href="../figures/full/paper_figure_4_return_evidence.png">PNG</a><a href="../figures/full/paper_figure_4_return_evidence.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="paper"><a href="../figures/full/paper_figure_5_mechanisms_readiness.png"><img src="../figures/full/paper_figure_5_mechanisms_readiness.png" alt="Paper Figure 5: Mechanisms and Readiness"></a><figcaption><strong>Paper Figure 5: Mechanisms and Readiness</strong><span>Numbered figure for Reg SHO evidence, external controls, non-pass readiness items, and interpretation discipline.</span><div class="figure-links"><a href="../figures/full/paper_figure_5_mechanisms_readiness.png">PNG</a><a href="../figures/full/paper_figure_5_mechanisms_readiness.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="overview"><a href="../figures/full/visual_evidence_pack.png"><img src="../figures/full/visual_evidence_pack.png" alt="Proposal Evidence Pack"></a><figcaption><strong>Proposal Evidence Pack</strong><span>One-page view of implementation status, no-arbitrage diagnostics, SDF evidence, interpretation, and return-result discipline.</span><div class="figure-links"><a href="../figures/full/visual_evidence_pack.png">PNG</a><a href="../figures/full/visual_evidence_pack.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="overview"><a href="../figures/full/evidence_dashboard.png"><img src="../figures/full/evidence_dashboard.png" alt="Full Evidence Dashboard"></a><figcaption><strong>Full Evidence Dashboard</strong><span>Portfolio wealth, factor alphas, SDF errors, external controls, and interpretation panels.</span><div class="figure-links"><a href="../figures/full/evidence_dashboard.png">PNG</a><a href="../figures/full/evidence_dashboard.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="surface"><a href="../figures/full/ssvi_no_arbitrage_diagnostics.png"><img src="../figures/full/ssvi_no_arbitrage_diagnostics.png" alt="SSVI No-arbitrage Diagnostics"></a><figcaption><strong>SSVI No-arbitrage Diagnostics</strong><span>Full-sample SSVI pass share, calendar diagnostics, and fit-quality evidence.</span><div class="figure-links"><a href="../figures/full/ssvi_no_arbitrage_diagnostics.png">PNG</a><a href="../figures/full/ssvi_no_arbitrage_diagnostics.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="surface"><a href="../figures/full/surface_feature_coverage.png"><img src="../figures/full/surface_feature_coverage.png" alt="Surface Feature Coverage"></a><figcaption><strong>Surface Feature Coverage</strong><span>Month-end option-surface feature coverage across the usable WRDS-backed sample.</span><div class="figure-links"><a href="../figures/full/surface_feature_coverage.png">PNG</a><a href="../figures/full/surface_feature_coverage.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="model"><a href="../figures/full/surface_autoencoder_reconstruction.png"><img src="../figures/full/surface_autoencoder_reconstruction.png" alt="Surface Autoencoder Reconstruction"></a><figcaption><strong>Surface Autoencoder Reconstruction</strong><span>CUDA autoencoder reconstruction diagnostics for fixed maturity-delta surface grids.</span><div class="figure-links"><a href="../figures/full/surface_autoencoder_reconstruction.png">PNG</a><a href="../figures/full/surface_autoencoder_reconstruction.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="model"><a href="../figures/full/gpu_neural_oos.png"><img src="../figures/full/gpu_neural_oos.png" alt="GPU Neural OOS Evidence"></a><figcaption><strong>GPU Neural OOS Evidence</strong><span>Walk-forward GPU return-model diagnostics, retained with the weak/negative result rather than overclaimed.</span><div class="figure-links"><a href="../figures/full/gpu_neural_oos.png">PNG</a><a href="../figures/full/gpu_neural_oos.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="portfolio"><a href="../figures/full/proposal_buffered_portfolio.png"><img src="../figures/full/proposal_buffered_portfolio.png" alt="Buffered Portfolio"></a><figcaption><strong>Buffered Portfolio</strong><span>Sector-balanced, beta-hedged, buffered portfolio construction with fixed and TAQ-calibrated costs.</span><div class="figure-links"><a href="../figures/full/proposal_buffered_portfolio.png">PNG</a><a href="../figures/full/proposal_buffered_portfolio.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="portfolio"><a href="../figures/full/asset_pricing_inference.png"><img src="../figures/full/asset_pricing_inference.png" alt="Asset-pricing Inference"></a><figcaption><strong>Asset-pricing Inference</strong><span>FF3/FF5+UMD alpha, GRS, HJ-style, Newey-West, and bootstrap evidence.</span><div class="figure-links"><a href="../figures/full/asset_pricing_inference.png">PNG</a><a href="../figures/full/asset_pricing_inference.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="sdf"><a href="../figures/full/conditional_autoencoder_sdf.png"><img src="../figures/full/conditional_autoencoder_sdf.png" alt="Conditional Autoencoder SDF"></a><figcaption><strong>Conditional Autoencoder SDF</strong><span>Three-branch conditional autoencoder SDF pricing and reconstruction diagnostics.</span><div class="figure-links"><a href="../figures/full/conditional_autoencoder_sdf.png">PNG</a><a href="../figures/full/conditional_autoencoder_sdf.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="sdf"><a href="../figures/full/conditional_sdf_interpretation.png"><img src="../figures/full/conditional_sdf_interpretation.png" alt="Conditional SDF Interpretation"></a><figcaption><strong>Conditional SDF Interpretation</strong><span>Integrated gradients and latent-factor interpretation for the flagship SDF.</span><div class="figure-links"><a href="../figures/full/conditional_sdf_interpretation.png">PNG</a><a href="../figures/full/conditional_sdf_interpretation.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="interpretation"><a href="../figures/full/tree_shap_interpretation.png"><img src="../figures/full/tree_shap_interpretation.png" alt="TreeSHAP Interpretation"></a><figcaption><strong>TreeSHAP Interpretation</strong><span>TreeSHAP feature importance for the refreshed full-characteristic predictive stack.</span><div class="figure-links"><a href="../figures/full/tree_shap_interpretation.png">PNG</a><a href="../figures/full/tree_shap_interpretation.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="mechanism"><a href="../figures/full/regsho_pilot_did.png"><img src="../figures/full/regsho_pilot_did.png" alt="Reg SHO Pilot DID"></a><figcaption><strong>Reg SHO Pilot DID</strong><span>Official SEC Category A pilot diff-in-diff mechanism test, shown as weak mechanism evidence.</span><div class="figure-links"><a href="../figures/full/regsho_pilot_did.png">PNG</a><a href="../figures/full/regsho_pilot_did.svg">SVG</a></div></figcaption></figure>
+<figure class="figure-card" data-group="readiness"><a href="../figures/full/proposal_readiness_matrix.png"><img src="../figures/full/proposal_readiness_matrix.png" alt="Readiness Matrix"></a><figcaption><strong>Readiness Matrix</strong><span>Machine-readable proposal readiness audit summarized as pass, weak-result, negative-result, and remaining boundary requirements.</span><div class="figure-links"><a href="../figures/full/proposal_readiness_matrix.png">PNG</a><a href="../figures/full/proposal_readiness_matrix.svg">SVG</a></div></figcaption></figure>
+    </section>
+  </main>
+  <footer>
+    Generated from local non-raw artifacts under outputs and manifests. Raw WRDS data, logs, credentials, and private API values are excluded.
+  </footer>
+</body>
+</html>

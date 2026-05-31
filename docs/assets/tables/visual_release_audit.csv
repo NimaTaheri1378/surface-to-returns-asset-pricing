@@ -1,0 +1,34 @@
+group,check,status,detail,path
+core_figures,visual_abstract PNG dimensions,PASS,4279x2208,outputs/figures/full/visual_abstract.png
+core_figures,visual_abstract SVG companion,PASS,"195,364 bytes",outputs/figures/full/visual_abstract.svg
+core_figures,paper_figure_1_pipeline PNG dimensions,PASS,3129x1645,outputs/figures/full/paper_figure_1_pipeline.png
+core_figures,paper_figure_1_pipeline SVG companion,PASS,"113,666 bytes",outputs/figures/full/paper_figure_1_pipeline.svg
+core_figures,paper_figure_2_surface_quality PNG dimensions,PASS,3153x1729,outputs/figures/full/paper_figure_2_surface_quality.png
+core_figures,paper_figure_2_surface_quality SVG companion,PASS,"119,733 bytes",outputs/figures/full/paper_figure_2_surface_quality.svg
+core_figures,paper_figure_3_sdf_interpretation PNG dimensions,PASS,2951x1771,outputs/figures/full/paper_figure_3_sdf_interpretation.png
+core_figures,paper_figure_3_sdf_interpretation SVG companion,PASS,"126,142 bytes",outputs/figures/full/paper_figure_3_sdf_interpretation.svg
+core_figures,paper_figure_4_return_evidence PNG dimensions,PASS,3055x1771,outputs/figures/full/paper_figure_4_return_evidence.png
+core_figures,paper_figure_4_return_evidence SVG companion,PASS,"146,228 bytes",outputs/figures/full/paper_figure_4_return_evidence.svg
+core_figures,paper_figure_5_mechanisms_readiness PNG dimensions,PASS,3148x1771,outputs/figures/full/paper_figure_5_mechanisms_readiness.png
+core_figures,paper_figure_5_mechanisms_readiness SVG companion,PASS,"127,839 bytes",outputs/figures/full/paper_figure_5_mechanisms_readiness.svg
+core_figures,visual_evidence_pack PNG dimensions,PASS,4320x3120,outputs/figures/full/visual_evidence_pack.png
+core_figures,visual_evidence_pack SVG companion,PASS,"340,669 bytes",outputs/figures/full/visual_evidence_pack.svg
+reports,visual_report exists,PASS,"17,782 bytes",outputs/reports/visual_report.html
+reports,visual_slide_deck exists,PASS,"9,223 bytes",outputs/reports/visual_slide_deck.html
+reports,visual_pdf_package exists,PASS,"1,340,583 bytes",outputs/reports/visual_figure_package.pdf
+reports,visual_artifact_index_html exists,PASS,"9,559 bytes",outputs/reports/visual_artifact_index.html
+reports,visual_artifact_index_csv exists,PASS,"7,467 bytes",outputs/reports/visual_artifact_index.csv
+reports,visual_artifact_bundle exists,PASS,"8,457,545 bytes",outputs/reports/visual_artifact_bundle.zip
+manifests,visual_abstract status,PASS,PASS,manifests/visual_abstract_manifest.json
+manifests,paper_figure_package status,PASS,PASS,manifests/paper_figure_package_manifest.json
+manifests,visual_pdf_package status,PASS,PASS,manifests/visual_pdf_package_manifest.json
+manifests,visual_report status,PASS,PASS,manifests/visual_report_manifest.json
+manifests,visual_slide_deck status,PASS,PASS,manifests/visual_slide_deck_manifest.json
+manifests,visual_artifact_index status,PASS,PASS,manifests/visual_artifact_index_manifest.json
+manifests,readiness boundary documented,PASS,"status=PASS_WITH_BOUNDARIES; counts={'NEGATIVE_RESULT': 3, 'PASS': 15, 'PASS_WEAK_RESULT': 1}",manifests/proposal_readiness_audit_manifest.json
+package_contract,PDF has expected pages,PASS,manifest=9; actual=9,outputs/reports/visual_figure_package.pdf
+package_contract,deck has expected slides,PASS,manifest=9; actual=9,outputs/reports/visual_slide_deck.html
+package_contract,report links core figures,PASS,all core figures present,manifests/visual_report_manifest.json
+package_contract,artifact index is substantial,PASS,"artifacts=51; zip_bytes=8,457,545; sha_len=64",manifests/visual_artifact_index_manifest.json
+package_contract,artifact bundle contains handoff files,PASS,53 entries,outputs/reports/visual_artifact_bundle.zip
+public_release,generated/private paths ignored,PASS,required ignore patterns present,.gitignore

@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "coefficients": "outputs/reports/regsho/regsho_pilot_did_coefficients.csv",
+    "did_sample": "outputs/reports/regsho/regsho_pilot_did_sample.parquet",
+    "event_spreads": "outputs/reports/regsho/regsho_surface_event_spreads.csv",
+    "figures": [
+      "outputs/figures/full/regsho_pilot_did.png",
+      "outputs/figures/full/regsho_pilot_did.svg"
+    ],
+    "pilot_list": "data/external/regsho_category_a_pilot_securities.csv"
+  },
+  "control_permnos": 1867,
+  "controls": [
+    "log_market_equity",
+    "book_to_market_comp",
+    "momentum_12_2",
+    "short_reversal",
+    "beta_252d",
+    "idio_vol_252d",
+    "median_spread_pct",
+    "turnover",
+    "ibes_analyst_coverage",
+    "ibes_forecast_dispersion"
+  ],
+  "created_utc": "2026-05-31T12:41:39+00:00",
+  "did_rows": 63881,
+  "months": 36,
+  "panel": "data/processed/panel/surface_characteristic_state_ibes_regsho_external_panel.parquet",
+  "pilot_category_a_count": 948,
+  "pilot_permnos": 674,
+  "pilot_rows": 19612,
+  "regression": {
+    "fixed_effects": [
+      "permno",
+      "date"
+    ],
+    "nobs": 63881,
+    "r2_within": 0.0481004515014557,
+    "target_coefficient": {
+      "coefficient": -0.0012648300936259319,
+      "se_cluster_date": 0.0015745031175925836,
+      "se_cluster_entity": 0.002044171408621415,
+      "se_hc1": 0.0019465335005005014,
+      "t_cluster_date": -0.8033201582730799,
+      "t_cluster_entity": -0.6187495277017551,
+      "t_hc1": -0.6497859365383196,
+      "term": "signal_x_pilot_x_post"
+    }
+  },
+  "return_col": "next_ret",
+  "signal_col": "put_call_iv_spread",
+  "source_url": "https://www.sec.gov/spotlight/shopilot/currentpilota41305.txt",
+  "status": "PASS",
+  "window_end": "2006-12-31",
+  "window_start": "2004-01-01"
+}

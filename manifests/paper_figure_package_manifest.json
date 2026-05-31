@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "figures": [
+    "outputs/figures/full/paper_figure_1_pipeline.png",
+    "outputs/figures/full/paper_figure_1_pipeline.svg",
+    "outputs/figures/full/paper_figure_2_surface_quality.png",
+    "outputs/figures/full/paper_figure_2_surface_quality.svg",
+    "outputs/figures/full/paper_figure_3_sdf_interpretation.png",
+    "outputs/figures/full/paper_figure_3_sdf_interpretation.svg",
+    "outputs/figures/full/paper_figure_4_return_evidence.png",
+    "outputs/figures/full/paper_figure_4_return_evidence.svg",
+    "outputs/figures/full/paper_figure_5_mechanisms_readiness.png",
+    "outputs/figures/full/paper_figure_5_mechanisms_readiness.svg"
+  ],
+  "figure_count": 5,
+  "source": "non_raw_reports_and_manifests"
+}

@@ -1,0 +1,16 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/conditional_sdf_interpretation.png",
+      "outputs/figures/full/conditional_sdf_interpretation.svg"
+    ],
+    "latent_beta_characteristic_correlations": "outputs/reports/interpretation/latent_beta_characteristic_correlations.csv",
+    "latent_factor_state_correlations": "outputs/reports/interpretation/latent_factor_state_correlations.csv",
+    "top_integrated_gradients": "outputs/reports/interpretation/top_integrated_gradients.csv"
+  },
+  "created_utc": "2026-05-31T19:41:52+00:00",
+  "latent_beta_correlations": 128,
+  "latent_factor_correlations": 448,
+  "status": "PASS",
+  "top_attributions": 25
+}

@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/surface_feature_coverage.png",
+      "outputs/figures/full/surface_feature_coverage.svg"
+    ],
+    "panel": "data/processed/panel/surface_features_panel.parquet"
+  },
+  "created_utc": "2026-05-31T07:07:59+00:00",
+  "crsp_shards": 348,
+  "date_max": "2024-12-31",
+  "date_min": "1996-01-31",
+  "feature_shards": 348,
+  "next_ret_nonmissing": 665615,
+  "panel_rows": 670730,
+  "status": "PASS",
+  "unique_permnos": 7569
+}

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Surface-to-Returns: Option-Surface Asset Pricing"
+message: "If you use this repository, please cite it as below."
+type: software
+authors:
+  - family-names: Taheri
+    given-names: Nima
+repository-code: "https://github.com/NimaTaheri1378/surface-to-returns-asset-pricing"
+license: MIT
+version: "0.1.0"
+date-released: "2026-05-31"

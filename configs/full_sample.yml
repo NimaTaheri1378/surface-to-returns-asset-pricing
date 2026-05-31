@@ -1,0 +1,18 @@
+sample:
+  start_year: 1996
+  end_year: 2025
+  month_end_only: true
+  ordinary_common_shares_only: true
+  min_price: 5.0
+  min_market_cap_usd: 250000000
+
+wrds:
+  max_parallel_connections: 4
+  optionmetrics_shard: year_month_end
+  write_parquet: true
+  write_manifests: true
+
+scale_gate:
+  require_smoke_status: PASS
+  require_option_crsp_link: true
+  require_smoke_figure: true

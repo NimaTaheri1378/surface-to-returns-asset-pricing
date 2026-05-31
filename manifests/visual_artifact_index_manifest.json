@@ -1,0 +1,471 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-05-31T19:50:45.591696+00:00",
+  "artifact_count": 51,
+  "csv": "outputs/reports/visual_artifact_index.csv",
+  "html": "outputs/reports/visual_artifact_index.html",
+  "zip": "outputs/reports/visual_artifact_bundle.zip",
+  "zip_sha256": "533af404377d8df82772b5e2d39e2c7b69d406774368778607b3111435003bec",
+  "zip_bytes": 8457545,
+  "artifacts": [
+    {
+      "path": "outputs/figures/full/asset_pricing_inference.png",
+      "kind": "diagnostic_figure",
+      "bytes": 175838,
+      "sha256": "9185c02952e50fc92985ac26009a796cb785165a7edef72b8ed7454f5ee1ec25",
+      "width": 2090,
+      "height": 1540,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/asset_pricing_inference.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 76507,
+      "sha256": "3dee39b38b0f034ccf040bb966c28ee88e28eed124d3003747c7740b95fe28f3",
+      "width": 684,
+      "height": 504,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/conditional_autoencoder_sdf.png",
+      "kind": "diagnostic_figure",
+      "bytes": 253435,
+      "sha256": "ff4959f1d30466d50dbb684c9e683fad8c73727bf57a5de53c2c6c2c32842c23",
+      "width": 2200,
+      "height": 1650,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/conditional_autoencoder_sdf.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 84457,
+      "sha256": "bfda11fd231eac48fce58646b40b4595ed3107bda88efeaf5bf99292a2df84c1",
+      "width": 720,
+      "height": 540,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/conditional_sdf_interpretation.png",
+      "kind": "diagnostic_figure",
+      "bytes": 312209,
+      "sha256": "009064aaea802f1c7a0f97e215967526d2e421fd68eb2b998b7c3311aec5a9c0",
+      "width": 3300,
+      "height": 1144,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/conditional_sdf_interpretation.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 137897,
+      "sha256": "e174aee2fe1dd98113c3addce39e420abd0b2d51bd9431e3748bb4a7d5c261f5",
+      "width": 1080,
+      "height": 374,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/evidence_dashboard.png",
+      "kind": "diagnostic_figure",
+      "bytes": 599590,
+      "sha256": "4610117bc11d6b0060bd5e34009a5f0d61593435d5834f98b31583038241764f",
+      "width": 4080,
+      "height": 2040,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/evidence_dashboard.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 211451,
+      "sha256": "8115ffd506dbf99d4e99401d35b4d7822f98db2ba9aa44bb5a4a86e74000fdd6",
+      "width": 1224,
+      "height": 612,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/fama_macbeth_slopes.png",
+      "kind": "diagnostic_figure",
+      "bytes": 280708,
+      "sha256": "78946bbe8278cf67bc30ff05d0a467064895832d64d585f105791fd6afa13bb4",
+      "width": 1760,
+      "height": 990,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/fama_macbeth_slopes.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 136799,
+      "sha256": "2eddf3a2eaefef90fdf61388f072514c8400c1ebe2772d4cd547f7d90f6ff614",
+      "width": 576,
+      "height": 324,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/gpu_decile_backtest.png",
+      "kind": "diagnostic_figure",
+      "bytes": 349889,
+      "sha256": "e9c1c4f473bf772b25fa65c7d67057b1ee134469399e7f7faaa4dc06463edbca",
+      "width": 2090,
+      "height": 1760,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/gpu_decile_backtest.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 94378,
+      "sha256": "a4841f71277a143a4104cd2f62430445304a1041625fc07b2483db89b81edaa4",
+      "width": 684,
+      "height": 576,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/gpu_neural_oos.png",
+      "kind": "diagnostic_figure",
+      "bytes": 294682,
+      "sha256": "3e03f621f8e2fd3d4e065ae616374146cd0432711fde8b40c0807e3c30b34416",
+      "width": 1980,
+      "height": 1320,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/gpu_neural_oos.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 55938,
+      "sha256": "c864d3e7092516949d06c9272f6dbfb0f09c96882d8f803b0c05586175156dc6",
+      "width": 648,
+      "height": 432,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_1_pipeline.png",
+      "kind": "paper_figure",
+      "bytes": 287816,
+      "sha256": "4b9e0eeb9cae0967ad974a034ed0017b976f51783774b0bec6108407bc5a6b6a",
+      "width": 3129,
+      "height": 1645,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_1_pipeline.svg",
+      "kind": "paper_figure",
+      "bytes": 113666,
+      "sha256": "962a1948ed8eae7451336c6f96a1fd8d129e1e3563ad4545c3a716e354a4fd6b",
+      "width": 939,
+      "height": 493,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_2_surface_quality.png",
+      "kind": "paper_figure",
+      "bytes": 333384,
+      "sha256": "8e1f656d404a0c0cfa9bf001858576fe8923a4e50e64a9516cdab51953482e5c",
+      "width": 3153,
+      "height": 1729,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_2_surface_quality.svg",
+      "kind": "paper_figure",
+      "bytes": 119733,
+      "sha256": "f16fe017caea65d4fcd53a0e00f05141a70b554a4b838d88240c36a79bd8e08a",
+      "width": 946,
+      "height": 518,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_3_sdf_interpretation.png",
+      "kind": "paper_figure",
+      "bytes": 314944,
+      "sha256": "4f19ba929c71aca4086d1f50d8d5fa8ea8bfb956d5645a0799cc41ec4492fd31",
+      "width": 2951,
+      "height": 1771,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_3_sdf_interpretation.svg",
+      "kind": "paper_figure",
+      "bytes": 126142,
+      "sha256": "5b5a2b3c6249af4e3152cb524799805d524b40b9ef13e4f26bb3cdfb39c5e27f",
+      "width": 885,
+      "height": 531,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_4_return_evidence.png",
+      "kind": "paper_figure",
+      "bytes": 545629,
+      "sha256": "e93393e4dd7db22c6da6f74665efc7fedeb22faeae95c00ab185af974e05da7e",
+      "width": 3055,
+      "height": 1771,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_4_return_evidence.svg",
+      "kind": "paper_figure",
+      "bytes": 146228,
+      "sha256": "0d2494090b5745e6acce355d5e0a67d90efd23b8dcbd419a4b230ac7a1b01951",
+      "width": 916,
+      "height": 531,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_5_mechanisms_readiness.png",
+      "kind": "paper_figure",
+      "bytes": 305433,
+      "sha256": "01c4f9f91103949e9e83dbb797513dbda42d37f726da12e6d75aa8981e493fcf",
+      "width": 3148,
+      "height": 1771,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/paper_figure_5_mechanisms_readiness.svg",
+      "kind": "paper_figure",
+      "bytes": 127839,
+      "sha256": "41915094d321185451f8b815348953bec653030da5fbad3bec99d308e22fddbc",
+      "width": 944,
+      "height": 531,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/proposal_buffered_portfolio.png",
+      "kind": "diagnostic_figure",
+      "bytes": 477318,
+      "sha256": "e7c1e1a0387dfbc71b90c1614d32bfa63c7ebed3ce02314d2196faacefe5cc4b",
+      "width": 2090,
+      "height": 1760,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/proposal_buffered_portfolio.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 96613,
+      "sha256": "12e25798eec05370d7af39caa036ba65c93216c0739c5ce69f7f138fe4668754",
+      "width": 684,
+      "height": 576,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/proposal_readiness_matrix.png",
+      "kind": "diagnostic_figure",
+      "bytes": 378896,
+      "sha256": "8ba0314b639f9fcd4e1b59f4ba16357a881390480d8c8c5ef43b6f622705edc3",
+      "width": 3240,
+      "height": 2280,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/proposal_readiness_matrix.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 118869,
+      "sha256": "d6e648f8686a72631d5a015f960f2b740183c1649c492833bba49917bb3902db",
+      "width": 972,
+      "height": 684,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/regsho_pilot_did.png",
+      "kind": "diagnostic_figure",
+      "bytes": 243232,
+      "sha256": "30401b90a2b518b082a9dbdbfc514baac932ed056d8f3f0ebd41ad71b972f518",
+      "width": 2970,
+      "height": 1144,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/regsho_pilot_did.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 67869,
+      "sha256": "d19c92eaa0a5827a3f4a14a930811ee403d19821a31ae92f420450f1ee42d5f9",
+      "width": 972,
+      "height": 374,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/ssvi_no_arbitrage_diagnostics.png",
+      "kind": "diagnostic_figure",
+      "bytes": 141705,
+      "sha256": "6fcb59271e837cffcaf225a3326cda0ad90268babb98d3648e59589a02b61d9a",
+      "width": 3300,
+      "height": 1056,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/ssvi_no_arbitrage_diagnostics.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 79987,
+      "sha256": "b869c7b406104d094502dc1b223752212b54d494a3852238b480f24f789bb88a",
+      "width": 1080,
+      "height": 345,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/surface_autoencoder_reconstruction.png",
+      "kind": "diagnostic_figure",
+      "bytes": 119104,
+      "sha256": "be777cc51d5d3b05a1d369148c6707fcd60f4e05c6f4a8d75ffa9f84882b4cb5",
+      "width": 2200,
+      "height": 880,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/surface_autoencoder_reconstruction.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 49025,
+      "sha256": "714fc70e4a17570a0b7e92de457458535572b6ebb29d3131de4058724fbfb215",
+      "width": 720,
+      "height": 288,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/surface_feature_coverage.png",
+      "kind": "diagnostic_figure",
+      "bytes": 267822,
+      "sha256": "2bafb6052c4c4ef4e6340f209a38921c9f7c4f5c517434a449a182af286b69b4",
+      "width": 1980,
+      "height": 1760,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/surface_feature_coverage.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 75919,
+      "sha256": "a7c5b1abffd33ac3ef331060626a515a7b9f456c147c778d99704d5a33498bba",
+      "width": 648,
+      "height": 576,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/tree_shap_interpretation.png",
+      "kind": "diagnostic_figure",
+      "bytes": 189796,
+      "sha256": "076ad6b3b1e2ac634dc4872f346de13e8f8d1dcc520c9de5f385d286911fd3c4",
+      "width": 2860,
+      "height": 1144,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/tree_shap_interpretation.svg",
+      "kind": "diagnostic_figure",
+      "bytes": 817960,
+      "sha256": "0672929caefe87f6531fde89bc156441274d0f0528834627075e5ce9c9218c5a",
+      "width": 936,
+      "height": 374,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/visual_abstract.png",
+      "kind": "visual_summary",
+      "bytes": 628148,
+      "sha256": "5bd67707b3048dd3c902ac604e161e881e16f40eac32b24fc6841f16fb0c1c31",
+      "width": 4279,
+      "height": 2208,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/visual_abstract.svg",
+      "kind": "visual_summary",
+      "bytes": 195364,
+      "sha256": "d1d1d799ba5eca295fabf58ec81f5445749e44a0d408a41835c34f559c1a426f",
+      "width": 1283,
+      "height": 662,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/visual_evidence_pack.png",
+      "kind": "visual_summary",
+      "bytes": 981599,
+      "sha256": "cfe0e5b7ffbde93f894dd6e6284990564c5fb3b26b6e65ebbf60dffd8fff2cf0",
+      "width": 4320,
+      "height": 3120,
+      "pages": null
+    },
+    {
+      "path": "outputs/figures/full/visual_evidence_pack.svg",
+      "kind": "visual_summary",
+      "bytes": 340669,
+      "sha256": "1edb6cacfde16e9f7f182deb867e3cdd33e8992c6874dfbf784e96d5e14d20b5",
+      "width": 1296,
+      "height": 936,
+      "pages": null
+    },
+    {
+      "path": "outputs/reports/visual_report.html",
+      "kind": "html_report",
+      "bytes": 17782,
+      "sha256": "9484bf928444588cc0e0b357d15295404a2454c68d869907a871aa0315fb2cff",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "outputs/reports/visual_slide_deck.html",
+      "kind": "html_report",
+      "bytes": 9223,
+      "sha256": "3a5920b36a9f900b81d11beb146c1d14625922255dc20a6e69e2c8cec62dbdb7",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "outputs/reports/visual_figure_package.pdf",
+      "kind": "pdf_package",
+      "bytes": 1340583,
+      "sha256": "9581567e6e2f46e68856b08bc281a5f14d870f07a095ec4b8fe6f46e1c04a453",
+      "width": null,
+      "height": null,
+      "pages": 9
+    },
+    {
+      "path": "manifests/visual_abstract_manifest.json",
+      "kind": "manifest",
+      "bytes": 284,
+      "sha256": "17e0eb5567d1f916c8c561031c5b9379338b81ac12e1178f3413bae99ee22503",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "manifests/paper_figure_package_manifest.json",
+      "kind": "manifest",
+      "bytes": 740,
+      "sha256": "fb10a4cdd384c2157feb5d8cf614ff4cab4aab3ccac429eb622abb816618054f",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "manifests/visual_pdf_package_manifest.json",
+      "kind": "manifest",
+      "bytes": 423,
+      "sha256": "5e45000c1ce1734604ca2884b1cc2c0e2d59585d731220eb03b30bb4276fec2a",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "manifests/visual_report_manifest.json",
+      "kind": "manifest",
+      "bytes": 807,
+      "sha256": "a51b9801fa3f27b3fd9f218fc0f98404a93a503b4cd1d1f40440e878e4178e79",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "manifests/visual_slide_deck_manifest.json",
+      "kind": "manifest",
+      "bytes": 389,
+      "sha256": "a352d6f7f37d939629b8d2e21ac68927f82b4e8c36cb2fef3b11be23cb536056",
+      "width": null,
+      "height": null,
+      "pages": null
+    },
+    {
+      "path": "manifests/proposal_readiness_audit_manifest.json",
+      "kind": "manifest",
+      "bytes": 720,
+      "sha256": "29ac9766541197bc08d2bd286a0bcc41d30238fda636b0fbd5b8f306d0bcbaee",
+      "width": null,
+      "height": null,
+      "pages": null
+    }
+  ]
+}

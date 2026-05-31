@@ -1,0 +1,13 @@
+{
+  "butterfly": "Gatheral-Jacquier SSVI bounds theta*phi*(1+|rho|)<4 and theta*phi^2*(1+|rho|)<4",
+  "calendar": "SSVI power-law phi with fitted monotone theta and grid calendar checks",
+  "created_utc": "2026-05-31T11:00:11+00:00",
+  "months": 348,
+  "pass_share": 1.0,
+  "pass_surfaces": 34800,
+  "status": "PASS",
+  "status_counts": {
+    "PASS": 348
+  },
+  "surfaces": 34800
+}

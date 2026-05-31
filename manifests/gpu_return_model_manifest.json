@@ -1,0 +1,226 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/gpu_neural_oos.png",
+      "outputs/figures/full/gpu_neural_oos.svg"
+    ],
+    "predictions": "outputs/reports/gpu_model/gpu_neural_oos_predictions.parquet"
+  },
+  "created_utc": "2026-05-31T19:37:26+00:00",
+  "device": "cuda",
+  "features": [
+    "mean_iv",
+    "atm_iv",
+    "put_call_iv_spread",
+    "median_spread_pct",
+    "n_contracts",
+    "market_equity",
+    "log_market_equity",
+    "turnover",
+    "log_dollar_volume",
+    "short_reversal",
+    "momentum_12_2",
+    "momentum_6_1",
+    "momentum_36_13",
+    "realized_vol_12m",
+    "amihud_illiq_12m",
+    "max_ret_12m",
+    "ret_skew_12m",
+    "zero_volume_12m",
+    "price",
+    "book_to_market_comp",
+    "gross_profitability",
+    "operating_profitability",
+    "roe",
+    "leverage",
+    "capex_at",
+    "accruals_at",
+    "cashflow_accruals_at",
+    "investment",
+    "asset_growth",
+    "sales_growth",
+    "cash_at",
+    "cashflow_at",
+    "net_working_capital_at",
+    "profit_margin",
+    "sales_at",
+    "debt_growth",
+    "equity_issuance",
+    "earnings_to_price",
+    "beta_252d",
+    "idio_vol_252d",
+    "total_vol_252d",
+    "mkt_corr_252d",
+    "vix_eom",
+    "vix_mean",
+    "vix_realized_state_vol",
+    "vix_change",
+    "vxo_eom",
+    "vxn_eom",
+    "vxd_eom",
+    "baa_aaa_spread",
+    "mktrf",
+    "smb",
+    "hml",
+    "rmw",
+    "cma",
+    "umd",
+    "taq_half_spread",
+    "taq_intraday_vol",
+    "taq_dollar_volume",
+    "ibes_analyst_coverage",
+    "ibes_forecast_dispersion",
+    "ibes_revision_breadth",
+    "ibes_mean_estimate",
+    "fred_unrate",
+    "fred_cpi_yoy",
+    "fred_indpro_yoy",
+    "fred_dgs10",
+    "fred_dgs2",
+    "fred_10y2y_spread",
+    "fred_t10y3m",
+    "fred_nfci",
+    "bls_unrate",
+    "bls_avg_hourly_earnings",
+    "bls_cpi_u_yoy",
+    "bea_gdp_yoy",
+    "eia_wti_spot_return",
+    "log_n_contracts",
+    "surface_ae_01",
+    "surface_ae_02",
+    "surface_ae_03",
+    "surface_ae_04",
+    "surface_ae_05",
+    "surface_ae_06",
+    "surface_ae_07",
+    "surface_ae_08",
+    "surface_ae_09",
+    "surface_ae_10",
+    "surface_ae_11",
+    "surface_ae_12"
+  ],
+  "fold_losses": [
+    {
+      "final_loss": 0.2666815686225891,
+      "fold": 1,
+      "test_months": 12,
+      "train_months": 120
+    },
+    {
+      "final_loss": 0.26855014650909986,
+      "fold": 2,
+      "test_months": 12,
+      "train_months": 132
+    },
+    {
+      "final_loss": 0.27049008905887606,
+      "fold": 3,
+      "test_months": 12,
+      "train_months": 144
+    },
+    {
+      "final_loss": 0.26896025827436737,
+      "fold": 4,
+      "test_months": 12,
+      "train_months": 156
+    },
+    {
+      "final_loss": 0.2688338552202497,
+      "fold": 5,
+      "test_months": 12,
+      "train_months": 168
+    },
+    {
+      "final_loss": 0.2674595478333925,
+      "fold": 6,
+      "test_months": 12,
+      "train_months": 180
+    },
+    {
+      "final_loss": 0.2652955338722322,
+      "fold": 7,
+      "test_months": 12,
+      "train_months": 192
+    },
+    {
+      "final_loss": 0.26626313613219693,
+      "fold": 8,
+      "test_months": 12,
+      "train_months": 204
+    },
+    {
+      "final_loss": 0.2671127351040536,
+      "fold": 9,
+      "test_months": 12,
+      "train_months": 216
+    },
+    {
+      "final_loss": 0.2670955020189285,
+      "fold": 10,
+      "test_months": 12,
+      "train_months": 228
+    },
+    {
+      "final_loss": 0.26779628812142137,
+      "fold": 11,
+      "test_months": 12,
+      "train_months": 240
+    },
+    {
+      "final_loss": 0.2685097056840147,
+      "fold": 12,
+      "test_months": 12,
+      "train_months": 252
+    },
+    {
+      "final_loss": 0.26913325614848377,
+      "fold": 13,
+      "test_months": 12,
+      "train_months": 264
+    },
+    {
+      "final_loss": 0.27084367190088543,
+      "fold": 14,
+      "test_months": 12,
+      "train_months": 276
+    },
+    {
+      "final_loss": 0.2697319727052342,
+      "fold": 15,
+      "test_months": 12,
+      "train_months": 288
+    },
+    {
+      "final_loss": 0.26048627798108087,
+      "fold": 16,
+      "test_months": 12,
+      "train_months": 300
+    },
+    {
+      "final_loss": 0.26124320179224014,
+      "fold": 17,
+      "test_months": 12,
+      "train_months": 312
+    },
+    {
+      "final_loss": 0.2612180784344673,
+      "fold": 18,
+      "test_months": 12,
+      "train_months": 324
+    },
+    {
+      "final_loss": 0.2608537296705608,
+      "fold": 19,
+      "test_months": 11,
+      "train_months": 336
+    }
+  ],
+  "folds": 19,
+  "mean_rank_ic": 0.002194321449990741,
+  "mean_top_bottom_return": -0.0005066062605713244,
+  "observations": 467085,
+  "panel": "data/processed/panel/surface_characteristic_state_ibes_regsho_external_panel.parquet",
+  "rank_ic_t_naive": 0.22901971385878475,
+  "status": "PASS",
+  "top_bottom_t_naive": -0.13666919438623584
+}

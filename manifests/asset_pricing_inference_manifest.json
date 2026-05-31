@@ -1,0 +1,78 @@
+{
+  "artifacts": {
+    "decile_returns": "outputs/reports/inference/gpu_prediction_decile_returns.csv",
+    "ff3_backtest_alphas": "outputs/reports/inference/ff3_backtest_alphas.csv",
+    "ff3_decile_alphas": "outputs/reports/inference/ff3_decile_alphas.csv",
+    "ff3_proposal_alphas": "outputs/reports/inference/ff3_proposal_alphas.csv",
+    "ff5_backtest_alphas": "outputs/reports/inference/ff5_backtest_alphas.csv",
+    "ff5_decile_alphas": "outputs/reports/inference/ff5_decile_alphas.csv",
+    "ff5_proposal_alphas": "outputs/reports/inference/ff5_proposal_alphas.csv",
+    "figures": [
+      "outputs/figures/full/asset_pricing_inference.png",
+      "outputs/figures/full/asset_pricing_inference.svg"
+    ]
+  },
+  "backtest_months": 227,
+  "bootstrap_net_ls": {
+    "block_length": 6,
+    "mean_monthly": -0.002519960210781104,
+    "mean_monthly_ci_high": 0.0006863794433615677,
+    "mean_monthly_ci_low": -0.006002503968329672,
+    "n_boot": 1000,
+    "nobs": 227,
+    "sharpe": -0.32259755999879086,
+    "sharpe_ci_high": 0.08823385549683467,
+    "sharpe_ci_low": -0.7501447887360774,
+    "status": "PASS"
+  },
+  "created_utc": "2026-05-31T19:37:54+00:00",
+  "decile_months": 227,
+  "factor_models": {
+    "ff3": [
+      "mktrf",
+      "smb",
+      "hml"
+    ],
+    "ff5_plus_umd": [
+      "mktrf",
+      "smb",
+      "hml",
+      "rmw",
+      "cma",
+      "umd"
+    ]
+  },
+  "grs": {
+    "ff3": {
+      "grs_pvalue": 0.013357882546708857,
+      "grs_stat": 2.3124161206846456,
+      "hj_distance_annualized": 1.1631218649877713,
+      "hj_distance_monthly": 0.33576436092551465,
+      "mean_abs_alpha_monthly": 0.0012533651053398586,
+      "n_assets": 10,
+      "n_factors": 3,
+      "nobs": 227,
+      "status": "PASS"
+    },
+    "ff5_plus_umd": {
+      "grs_pvalue": 0.11517584120665442,
+      "grs_stat": 1.5766597156806823,
+      "hj_distance_annualized": 0.9955494895287753,
+      "hj_distance_monthly": 0.2873903828855165,
+      "mean_abs_alpha_monthly": 0.0010219905565632549,
+      "n_assets": 10,
+      "n_factors": 6,
+      "nobs": 227,
+      "status": "PASS"
+    }
+  },
+  "net_ff5_alpha_monthly": -0.002135009593551789,
+  "net_ff5_alpha_t": -1.2501853822865385,
+  "predictions_rows": 467085,
+  "proposal_net_ff5_alpha_monthly": -0.0011861765809320546,
+  "proposal_net_ff5_alpha_t": -0.9883408190791318,
+  "proposal_portfolio_months": 227,
+  "proposal_taq_net_ff5_alpha_monthly": -0.0033791539499539967,
+  "proposal_taq_net_ff5_alpha_t": -2.8754062225381083,
+  "status": "PASS"
+}

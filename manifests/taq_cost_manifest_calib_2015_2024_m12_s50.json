@@ -1,0 +1,101 @@
+{
+  "artifacts": {
+    "cost_panel": "data/processed/panel/taq_cost_panel_calib_2015_2024_m12_s50.parquet",
+    "panel": "data/processed/panel/surface_characteristic_state_daily_risk_taq_panel_calib_2015_2024_m12_s50.parquet"
+  },
+  "calibrate_full_panel": true,
+  "calibrated_taq_share": 0.9991797924725827,
+  "cost_rows": 600,
+  "created_utc": "2026-05-31T12:01:30+00:00",
+  "exact_taq_share": 0.0008202075274173007,
+  "missingness": {
+    "taq_depth": 1.0,
+    "taq_dollar_volume": 0.0,
+    "taq_half_spread": 0.0,
+    "taq_intraday_vol": 0.0,
+    "taq_midquote": 0.9991797924725827,
+    "taq_one_way_cost": 0.9991797924725827,
+    "taq_quote_obs": 0.9991797924725827,
+    "taq_quoted_spread": 0.9991797924725827,
+    "taq_share_volume": 0.9991797924725827,
+    "taq_trade_obs": 0.9991797924725827
+  },
+  "months": [
+    {
+      "date": "2015-01-30",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2015-12-31",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2016-11-30",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2017-09-29",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2018-08-31",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2019-07-31",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2020-06-30",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2021-05-28",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2022-04-29",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2023-02-28",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2024-01-31",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    },
+    {
+      "date": "2024-12-31",
+      "panel_rows": 50,
+      "status": "PASS_RESUMED"
+    }
+  ],
+  "output_suffix": "_calib_2015_2024_m12_s50",
+  "panel_rows": 670562,
+  "sample_date_strategy": "even",
+  "status": "PASS",
+  "taq_columns": [
+    "taq_midquote",
+    "taq_half_spread",
+    "taq_quoted_spread",
+    "taq_depth",
+    "taq_quote_obs",
+    "taq_dollar_volume",
+    "taq_share_volume",
+    "taq_trade_obs",
+    "taq_intraday_vol",
+    "taq_one_way_cost"
+  ]
+}

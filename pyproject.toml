@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "surface-to-returns"
+version = "0.1.0"
+description = "Option-surface asset-pricing research pipeline with WRDS extraction, no-arbitrage surfaces, GPU models, and SDF diagnostics."
+requires-python = ">=3.9"
+dependencies = [
+  "numpy",
+  "pandas",
+  "pyarrow",
+  "PyYAML",
+  "matplotlib",
+  "scipy",
+  "scikit-learn",
+  "statsmodels",
+  "wrds",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+]
+model = [
+  "lightgbm",
+  "shap",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true

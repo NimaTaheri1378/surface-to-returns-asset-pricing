@@ -1,0 +1,51 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/gpu_decile_backtest.png",
+      "outputs/figures/full/gpu_decile_backtest.svg"
+    ],
+    "monthly_csv": "outputs/reports/backtests/gpu_neural_decile_backtest.csv",
+    "summary_csv": "outputs/reports/backtests/gpu_neural_decile_summary.csv"
+  },
+  "average_total_cost": 0.00162413059732912,
+  "average_turnover": 1.62413059732912,
+  "cost_note": "Default net returns subtract fixed one-way equity trading costs only. Option quote spreads are retained as diagnostics unless --use-option-spread-cost is set.",
+  "created_utc": "2026-05-31T12:36:15+00:00",
+  "date_max": "2024-11-01",
+  "date_min": "2006-01-01",
+  "gross": {
+    "annualized_return": -0.010697147497957249,
+    "annualized_sharpe": -0.11465536354881994,
+    "annualized_volatility": 0.09375885286732778,
+    "cumulative_return": -0.24982424569189665,
+    "hit_rate": 0.5066079295154186,
+    "max_drawdown": -0.5072357474122986,
+    "mean_monthly_return": -0.0008958296134519823,
+    "months": 227,
+    "t_stat_naive": -0.4986739493100878
+  },
+  "median_option_half_spread": NaN,
+  "min_assets": 20,
+  "model_source": "gpu_neural_oos_predictions",
+  "months": 227,
+  "net": {
+    "annualized_return": -0.02982390997910289,
+    "annualized_sharpe": -0.32259755999879014,
+    "annualized_volatility": 0.09373760461637287,
+    "cumulative_return": -0.4815929927882029,
+    "hit_rate": 0.47577092511013214,
+    "max_drawdown": -0.6208549843070089,
+    "mean_monthly_return": -0.0025199602107811017,
+    "months": 227,
+    "t_stat_naive": -1.4030830682761408
+  },
+  "net_max_drawdown_check": -0.6208549843070089,
+  "one_way_cost_bps": 10.0,
+  "option_half_spread_available": true,
+  "panel_costs_used": true,
+  "predictions_rows": 467085,
+  "quantiles": 10,
+  "spread_costs_used": false,
+  "status": "PASS",
+  "weights_rows": 93425
+}

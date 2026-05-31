@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "report": "outputs/reports/visual_report.html",
+  "figures_available": [
+    "visual_abstract.png",
+    "paper_figure_1_pipeline.png",
+    "paper_figure_2_surface_quality.png",
+    "paper_figure_3_sdf_interpretation.png",
+    "paper_figure_4_return_evidence.png",
+    "paper_figure_5_mechanisms_readiness.png",
+    "visual_evidence_pack.png",
+    "evidence_dashboard.png",
+    "ssvi_no_arbitrage_diagnostics.png",
+    "surface_feature_coverage.png",
+    "surface_autoencoder_reconstruction.png",
+    "gpu_neural_oos.png",
+    "proposal_buffered_portfolio.png",
+    "asset_pricing_inference.png",
+    "conditional_autoencoder_sdf.png",
+    "conditional_sdf_interpretation.png",
+    "tree_shap_interpretation.png",
+    "regsho_pilot_did.png",
+    "proposal_readiness_matrix.png"
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/tree_shap_interpretation.png",
+      "outputs/figures/full/tree_shap_interpretation.svg"
+    ],
+    "summary_csv": "outputs/reports/interpretation/tree_shap_feature_importance.csv",
+    "values_sample": "outputs/reports/interpretation/tree_shap_values_sample.parquet"
+  },
+  "created_utc": "2026-05-31T19:42:39+00:00",
+  "explain_rows": 8000,
+  "features": [
+    "mean_iv",
+    "atm_iv",
+    "put_call_iv_spread",
+    "median_spread_pct",
+    "n_contracts",
+    "market_equity",
+    "log_market_equity",
+    "turnover",
+    "log_dollar_volume",
+    "short_reversal",
+    "momentum_12_2",
+    "momentum_6_1",
+    "momentum_36_13",
+    "realized_vol_12m",
+    "amihud_illiq_12m",
+    "max_ret_12m",
+    "ret_skew_12m",
+    "zero_volume_12m",
+    "price",
+    "book_to_market_comp",
+    "gross_profitability",
+    "operating_profitability",
+    "roe",
+    "leverage",
+    "capex_at",
+    "accruals_at",
+    "cashflow_accruals_at",
+    "investment",
+    "asset_growth",
+    "sales_growth",
+    "cash_at",
+    "cashflow_at",
+    "net_working_capital_at",
+    "profit_margin",
+    "sales_at",
+    "debt_growth",
+    "equity_issuance",
+    "earnings_to_price",
+    "beta_252d",
+    "idio_vol_252d",
+    "total_vol_252d",
+    "mkt_corr_252d",
+    "vix_eom",
+    "vix_mean",
+    "vix_realized_state_vol",
+    "vix_change",
+    "vxo_eom",
+    "vxn_eom",
+    "vxd_eom",
+    "baa_aaa_spread",
+    "mktrf",
+    "smb",
+    "hml",
+    "rmw",
+    "cma",
+    "umd",
+    "taq_half_spread",
+    "taq_intraday_vol",
+    "taq_dollar_volume",
+    "ibes_analyst_coverage",
+    "ibes_forecast_dispersion",
+    "ibes_revision_breadth",
+    "ibes_mean_estimate",
+    "fred_unrate",
+    "fred_cpi_yoy",
+    "fred_indpro_yoy",
+    "fred_dgs10",
+    "fred_dgs2",
+    "fred_10y2y_spread",
+    "fred_t10y3m",
+    "fred_nfci",
+    "bls_unrate",
+    "bls_avg_hourly_earnings",
+    "bls_cpi_u_yoy",
+    "bea_gdp_yoy",
+    "eia_wti_spot_return",
+    "log_n_contracts",
+    "surface_ae_01",
+    "surface_ae_02",
+    "surface_ae_03",
+    "surface_ae_04",
+    "surface_ae_05",
+    "surface_ae_06",
+    "surface_ae_07",
+    "surface_ae_08",
+    "surface_ae_09",
+    "surface_ae_10",
+    "surface_ae_11",
+    "surface_ae_12"
+  ],
+  "lightgbm_version": "3.3.5",
+  "panel": "data/processed/panel/surface_characteristic_state_ibes_regsho_external_panel.parquet",
+  "shap_version": "0.51.0",
+  "status": "PASS",
+  "top_features": [
+    {
+      "feature": "vix_change",
+      "mean_abs_shap": 0.006007142068163817,
+      "mean_shap": -0.0006399439416157289,
+      "shap_std": 0.008455557309463598
+    },
+    {
+      "feature": "fred_nfci",
+      "mean_abs_shap": 0.005185323629502103,
+      "mean_shap": 0.0013306413260767687,
+      "shap_std": 0.006237987400936593
+    },
+    {
+      "feature": "fred_dgs10",
+      "mean_abs_shap": 0.003980305947620034,
+      "mean_shap": -0.00023425413695163678,
+      "shap_std": 0.0051470514428630905
+    },
+    {
+      "feature": "cma",
+      "mean_abs_shap": 0.0031104004036566135,
+      "mean_shap": -0.0004376983612115675,
+      "shap_std": 0.0037489391980545196
+    },
+    {
+      "feature": "equity_issuance",
+      "mean_abs_shap": 0.0030233335136340923,
+      "mean_shap": 0.00037167631797604576,
+      "shap_std": 0.0035704813246973987
+    },
+    {
+      "feature": "hml",
+      "mean_abs_shap": 0.0030057107709154218,
+      "mean_shap": -0.0009210597348071136,
+      "shap_std": 0.0034828393072458314
+    },
+    {
+      "feature": "mktrf",
+      "mean_abs_shap": 0.002949902877454316,
+      "mean_shap": -0.000501615908320034,
+      "shap_std": 0.003547777569667912
+    },
+    {
+      "feature": "debt_growth",
+      "mean_abs_shap": 0.0022422314409404755,
+      "mean_shap": -9.580525185411433e-05,
+      "shap_std": 0.002881763703794973
+    },
+    {
+      "feature": "vix_realized_state_vol",
+      "mean_abs_shap": 0.002170475793523768,
+      "mean_shap": -0.0001236983807380244,
+      "shap_std": 0.002828928069400503
+    },
+    {
+      "feature": "eia_wti_spot_return",
+      "mean_abs_shap": 0.002125967187837749,
+      "mean_shap": 0.0009763299024511443,
+      "shap_std": 0.002541832751063699
+    },
+    {
+      "feature": "vix_eom",
+      "mean_abs_shap": 0.0021061173815485126,
+      "mean_shap": 0.0004072212059896971,
+      "shap_std": 0.0027462519866227747
+    },
+    {
+      "feature": "bls_avg_hourly_earnings",
+      "mean_abs_shap": 0.0020998276761190933,
+      "mean_shap": -0.00034716706736690676,
+      "shap_std": 0.0027127320418825944
+    },
+    {
+      "feature": "umd",
+      "mean_abs_shap": 0.0018244603173314196,
+      "mean_shap": 0.0007702906475205806,
+      "shap_std": 0.0020473257722612294
+    },
+    {
+      "feature": "fred_unrate",
+      "mean_abs_shap": 0.001568796637561974,
+      "mean_shap": -0.00047025707676886456,
+      "shap_std": 0.0020007149495959915
+    },
+    {
+      "feature": "fred_10y2y_spread",
+      "mean_abs_shap": 0.0015203876496770446,
+      "mean_shap": 0.0001526931532641537,
+      "shap_std": 0.001980723847654941
+    },
+    {
+      "feature": "baa_aaa_spread",
+      "mean_abs_shap": 0.0015033246461888074,
+      "mean_shap": -0.00026838029990226787,
+      "shap_std": 0.0022317186194356726
+    },
+    {
+      "feature": "rmw",
+      "mean_abs_shap": 0.0013872558662836167,
+      "mean_shap": 0.00012464499294013756,
+      "shap_std": 0.0017012167048222368
+    },
+    {
+      "feature": "fred_dgs2",
+      "mean_abs_shap": 0.0013376265367817813,
+      "mean_shap": -0.0002832289218733024,
+      "shap_std": 0.0016055737975312918
+    },
+    {
+      "feature": "short_reversal",
+      "mean_abs_shap": 0.001264847139546166,
+      "mean_shap": 1.7092390476632177e-05,
+      "shap_std": 0.001585190004210829
+    },
+    {
+      "feature": "bea_gdp_yoy",
+      "mean_abs_shap": 0.0012512552369447004,
+      "mean_shap": -0.00025476582809890103,
+      "shap_std": 0.0015849666442862623
+    }
+  ],
+  "train_end": "2019-12-01",
+  "train_rows": 250000
+}

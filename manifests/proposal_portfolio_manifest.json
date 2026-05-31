@@ -1,0 +1,46 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/proposal_buffered_portfolio.png",
+      "outputs/figures/full/proposal_buffered_portfolio.svg"
+    ],
+    "monthly_csv": "outputs/reports/backtests/proposal_buffered_portfolio.csv",
+    "summary_csv": "outputs/reports/backtests/proposal_buffered_summary.csv",
+    "weights": "outputs/reports/backtests/proposal_buffered_weights.parquet"
+  },
+  "average_abs_beta_exposure": 0.2733607913420364,
+  "average_turnover": 1.5777330392092401,
+  "beta_source": "daily_beta_252d",
+  "created_utc": "2026-05-31T19:37:48+00:00",
+  "entry_pct": 0.1,
+  "exit_pct": 0.2,
+  "members_rows": 104757,
+  "months": 227,
+  "net": {
+    "annualized_return": -0.018059643169852202,
+    "annualized_sharpe": -0.24162395707491435,
+    "annualized_volatility": 0.07536867185776461,
+    "cumulative_return": -0.32901442985702833,
+    "hit_rate": 0.4669603524229075,
+    "max_drawdown": -0.42869638165796464,
+    "mean_monthly_return": -0.0015175730611461519,
+    "months": 227,
+    "t_stat_naive": -1.0509021923878308
+  },
+  "one_way_cost_bps": 10.0,
+  "predictions_rows": 467085,
+  "status": "PASS",
+  "taq_costs_used": true,
+  "taq_net": {
+    "annualized_return": -0.0436296980601375,
+    "annualized_sharpe": -0.5942828976384279,
+    "annualized_volatility": 0.07492606541918424,
+    "cumulative_return": -0.5925069770909026,
+    "hit_rate": 0.44052863436123346,
+    "max_drawdown": -0.6226968197389726,
+    "mean_monthly_return": -0.0037106066054966025,
+    "months": 227,
+    "t_stat_naive": -2.584732108468794
+  },
+  "weights_rows": 104757
+}

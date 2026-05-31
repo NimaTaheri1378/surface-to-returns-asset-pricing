@@ -1,0 +1,77 @@
+{
+  "artifacts": {
+    "coverage_csv": "outputs/reports/external/monthly_external_api_coverage.csv",
+    "panel_external": "data/processed/panel/surface_characteristic_state_ibes_regsho_external_panel.parquet",
+    "raw_controls": "data/external/monthly_external_api_controls_raw.parquet",
+    "signal_controls": "data/external/monthly_external_api_controls.parquet",
+    "state_controls_external": "data/processed/states/monthly_state_controls_external.parquet"
+  },
+  "availability_lag_months": 1,
+  "control_sources_passed": [
+    "FRED",
+    "BLS",
+    "BEA",
+    "EIA"
+  ],
+  "created_utc": "2026-05-31T19:12:29+00:00",
+  "end_year": 2024,
+  "panel": "data/processed/panel/surface_characteristic_state_ibes_regsho_panel.parquet",
+  "panel_rows": 670562,
+  "raw_rows": 348,
+  "signal_columns": [
+    "fred_unrate",
+    "fred_cpi",
+    "fred_indpro",
+    "fred_dgs10",
+    "fred_dgs2",
+    "fred_t10y3m",
+    "fred_nfci",
+    "fred_10y2y_spread",
+    "fred_cpi_yoy",
+    "fred_indpro_yoy",
+    "bls_unrate",
+    "bls_cpi_u",
+    "bls_avg_hourly_earnings",
+    "bls_cpi_u_yoy",
+    "bea_gdp",
+    "bea_gdp_yoy",
+    "eia_wti_spot",
+    "eia_wti_spot_return"
+  ],
+  "signal_rows": 347,
+  "source_statuses": [
+    {
+      "detail": "fredgraph CSV,official API",
+      "rows": 348,
+      "source": "FRED",
+      "status": "PASS"
+    },
+    {
+      "detail": "public API v2",
+      "rows": 348,
+      "source": "BLS",
+      "status": "PASS"
+    },
+    {
+      "detail": "NIPA T10101 line 1, current vintage",
+      "rows": 348,
+      "source": "BEA",
+      "status": "PASS"
+    },
+    {
+      "detail": "v2 petroleum/pri/spt RWTC",
+      "rows": 348,
+      "source": "EIA",
+      "status": "PASS"
+    },
+    {
+      "detail": "company_tickers metadata",
+      "rows": 10365,
+      "source": "SEC_EDGAR",
+      "status": "PASS"
+    }
+  ],
+  "start_year": 1996,
+  "state_rows": 372,
+  "status": "PASS"
+}

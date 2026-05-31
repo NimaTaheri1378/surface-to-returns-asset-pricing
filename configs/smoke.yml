@@ -1,0 +1,30 @@
+project:
+  approved_remote_root: null
+  approved_slurm_job_id: null
+
+wrds:
+  core_libraries:
+    - crsp
+    - comp
+    - optionm
+    - cboe_all
+    - ff_all
+    - frb_all
+  optional_link_libraries:
+    - wrdsapps
+    - optionm
+
+sample:
+  smoke_year: 2022
+  smoke_month: 12
+  max_crsp_rows: 10000
+  max_option_rows: 20000
+  max_comp_rows: 5000
+  full_start_year: 1996
+  full_end_year: 2025
+
+execution:
+  wrds_connections_probe: 1
+  wrds_connections_full_max: 4
+  stop_if_link_missing: true
+  stop_if_wrds_auth_fails: true

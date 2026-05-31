@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "figures": [
+      "outputs/figures/full/conditional_sdf.png",
+      "outputs/figures/full/conditional_sdf.svg"
+    ],
+    "monthly_csv": "outputs/reports/sdf/conditional_sdf_monthly.csv",
+    "pricing_errors_csv": "outputs/reports/sdf/conditional_sdf_pricing_errors.csv",
+    "thetas_csv": "outputs/reports/sdf/conditional_sdf_thetas.csv"
+  },
+  "conditional_sdf_payoff_mean_monthly": -0.04986153992163517,
+  "created_utc": "2026-05-31T03:02:23+00:00",
+  "decile_months": 227,
+  "device": "cuda",
+  "factors": [
+    "hml",
+    "hml_x_signal_dispersion",
+    "hml_x_mean_abs_signal"
+  ],
+  "folds": 14,
+  "hml_mean_monthly": 0.004914314850585143,
+  "oos_months": 167,
+  "predictions_rows": 465829,
+  "pricing_error_mean_abs": 0.01660149598527179,
+  "pricing_error_rms": 0.023777811288155565,
+  "status": "PASS"
+}

@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "aggregate_json": "outputs/reports/surfaces/ssvi_fit_aggregate.json",
+    "figures": [
+      "outputs/figures/full/ssvi_no_arbitrage_diagnostics.png",
+      "outputs/figures/full/ssvi_no_arbitrage_diagnostics.svg"
+    ],
+    "monthly_csv": "outputs/reports/surfaces/ssvi_monthly_summary.csv"
+  },
+  "created_utc": "2026-05-31T11:02:03+00:00",
+  "months": 348,
+  "pass_share": 1.0,
+  "status": "PASS",
+  "surfaces": 34800
+}

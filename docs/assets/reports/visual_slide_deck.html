@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surface-to-Returns Visual Deck</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1f2933;
+  --muted: #5b6573;
+  --line: #d8dee6;
+  --panel: #f6f8fb;
+  --accent: #356da3;
+}
+* { box-sizing: border-box; }
+html { scroll-snap-type: y mandatory; }
+html, body { overflow-x: hidden; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+}
+.slide {
+  width: 100%;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  padding: 4.5vh 5.2vw;
+  display: grid;
+  align-content: start;
+  gap: 2.4vh;
+  page-break-after: always;
+}
+.kicker {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.slide-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page {
+  color: var(--muted);
+  font-weight: 700;
+}
+h1, h2, h3, p { margin: 0; letter-spacing: 0; }
+h1 {
+  margin-top: 1.2vh;
+  font-size: clamp(58px, 8vw, 118px);
+  line-height: 0.92;
+}
+h2 {
+  font-size: clamp(30px, 4vw, 58px);
+  line-height: 1.02;
+}
+h3 {
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+.subtitle {
+  margin-top: 2.4vh;
+  max-width: 900px;
+  font-size: 24px;
+  line-height: 1.38;
+  color: var(--muted);
+}
+.boundary {
+  margin-top: 3vh;
+  max-width: 820px;
+  padding: 16px 20px;
+  border-left: 6px solid #c45a42;
+  background: #fff7f4;
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.title-slide {
+  grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);
+  align-items: center;
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.metric {
+  min-height: 112px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 15px 18px;
+  border-top: 7px solid var(--accent);
+}
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.metric strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 31px;
+}
+.metric p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 16px;
+}
+.slide-title {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(360px, 0.28fr);
+  gap: 28px;
+  align-items: end;
+}
+.slide-title p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.35;
+}
+figure {
+  margin: 0;
+  width: 100%;
+  height: 73vh;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.closing-slide {
+  align-content: center;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 3vh;
+}
+.proof, .limits {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px 32px;
+  background: var(--panel);
+}
+.limits {
+  background: #fff7f4;
+  border-color: #f2d5cc;
+}
+li {
+  margin-bottom: 15px;
+  font-size: 20px;
+  line-height: 1.38;
+}
+@media print {
+  @page { size: 16in 9in; margin: 0; }
+  html { scroll-snap-type: none; }
+  .slide { width: 16in; min-height: 9in; padding: 0.42in 0.55in; }
+  figure { height: 6.25in; }
+  h1 { font-size: 76pt; }
+  h2 { font-size: 34pt; }
+}
+@media (max-width: 880px) {
+  .title-slide, .slide-title, .two-col { grid-template-columns: 1fr; }
+  .slide { padding: 26px 22px; }
+  figure { height: 58vh; }
+}
+</style>
+</head>
+<body>
+  
+<section class="slide title-slide">
+  <div class="title-copy">
+    <span class="kicker">Proposal evidence deck</span>
+    <h1>Surface-to-Returns</h1>
+    <p class="subtitle">A public-safe visual package for the verified option-surface asset-pricing implementation.</p>
+    <p class="boundary">Current boundary: return evidence is weak/negative; external APIs are loaded only from safe runtime env vars.</p>
+  </div>
+  <div class="metric-grid">
+    <article class="metric" style="--accent:#356da3"><span>Sample</span><strong>1996-2024</strong><p>345 completed shards</p></article><article class="metric" style="--accent:#2f7d32"><span>SSVI Gates</span><strong>100.0%</strong><p>34,800 surfaces</p></article><article class="metric" style="--accent:#8f4f9f"><span>Characteristics</span><strong>33</strong><p>670,562 firm-month rows</p></article><article class="metric" style="--accent:#3d9292"><span>SDF</span><strong>0.116</strong><p>227 OOS months</p></article><article class="metric" style="--accent:#c77d20"><span>Readiness</span><strong>15 pass</strong><p>3 negative, 0 blocked</p></article>
+  </div>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#356da3">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">02</span>
+  </div>
+  <div class="slide-title">
+    <h2>Visual Abstract</h2>
+    <p>First-glance summary of the scaled implementation, no-arbitrage success, and honest return boundary.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/visual_abstract.png" alt="Visual Abstract">
+  </figure>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#356da3">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">03</span>
+  </div>
+  <div class="slide-title">
+    <h2>Figure 1. Data and Modeling Stack</h2>
+    <p>WRDS extraction, linkage, surface construction, characteristics, costs, inference, and interpretation.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/paper_figure_1_pipeline.png" alt="Figure 1. Data and Modeling Stack">
+  </figure>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#2f7d32">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">04</span>
+  </div>
+  <div class="slide-title">
+    <h2>Figure 2. Surface Quality</h2>
+    <p>SSVI pass share, fit error, monotone-theta projection, and no-arbitrage constraints.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/paper_figure_2_surface_quality.png" alt="Figure 2. Surface Quality">
+  </figure>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#8f4f9f">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">05</span>
+  </div>
+  <div class="slide-title">
+    <h2>Figure 3. SDF and Interpretation</h2>
+    <p>Three-branch conditional autoencoder SDF, integrated gradients, and TreeSHAP evidence.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/paper_figure_3_sdf_interpretation.png" alt="Figure 3. SDF and Interpretation">
+  </figure>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#c45a42">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">06</span>
+  </div>
+  <div class="slide-title">
+    <h2>Figure 4. Return Evidence</h2>
+    <p>Buffered long-short wealth, Sharpe ratios, factor alphas, and trading frictions.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/paper_figure_4_return_evidence.png" alt="Figure 4. Return Evidence">
+  </figure>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#c77d20">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">07</span>
+  </div>
+  <div class="slide-title">
+    <h2>Figure 5. Mechanisms and Readiness</h2>
+    <p>Reg SHO mechanism evidence, external controls, non-pass readiness items, and interpretation discipline.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/paper_figure_5_mechanisms_readiness.png" alt="Figure 5. Mechanisms and Readiness">
+  </figure>
+</section>
+
+
+<section class="slide image-slide" style="--accent:#3d9292">
+  <div class="slide-head">
+    <span class="kicker">Surface-to-Returns visual deck</span>
+    <span class="page">08</span>
+  </div>
+  <div class="slide-title">
+    <h2>Evidence Pack</h2>
+    <p>Detailed one-page view of implementation status, diagnostics, model evidence, and boundaries.</p>
+  </div>
+  <figure>
+    <img src="../figures/full/visual_evidence_pack.png" alt="Evidence Pack">
+  </figure>
+</section>
+
+
+<section class="slide closing-slide">
+  <span class="kicker">Evidence discipline</span>
+  <h2>What The Visual Package Proves</h2>
+  <div class="two-col">
+    <div class="proof">
+      <h3>Implemented and verified</h3>
+      <ul>
+        <li>Scaled WRDS extraction through the usable 1996-2024 optionable sample.</li>
+        <li>SVI and SSVI no-arbitrage diagnostics pass at full usable scale.</li>
+        <li>CRSP-Compustat characteristics, state controls, TAQ costs, IBES, Reg SHO, SDF, SHAP, and inference artifacts exist.</li>
+        <li>Visual report, abstract, evidence pack, and numbered figure package are generated from non-raw outputs.</li>
+      </ul>
+    </div>
+    <div class="limits">
+      <h3>Not overclaimed</h3>
+      <ul><li>GPU walk-forward return model: NEGATIVE RESULT</li><li>Sector-balanced beta-hedged buffered portfolio: NEGATIVE RESULT</li><li>Factor alphas, HJ/GRS, Newey-West, bootstrap inference: NEGATIVE RESULT</li><li>Reg SHO pilot mechanism test: PASS WEAK RESULT</li></ul>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

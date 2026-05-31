@@ -1,0 +1,237 @@
+{
+  "artifacts": {
+    "panel": "data/processed/panel/surface_characteristic_state_daily_risk_panel.parquet",
+    "risk_table": "data/processed/panel/daily_risk_characteristics.parquet"
+  },
+  "created_utc": "2026-05-31T12:00:26+00:00",
+  "date_max": "2024-12-31",
+  "date_min": "1996-01-31",
+  "missingness": {
+    "beta_252d": 0.0042084102588574954,
+    "daily_obs_252d": 0.0042084102588574954,
+    "idio_vol_252d": 0.011116048926124654,
+    "mkt_corr_252d": 0.0042084102588574954,
+    "total_vol_252d": 0.0042084102588574954
+  },
+  "output_suffix": "",
+  "panel_rows": 670562,
+  "risk_columns": [
+    "beta_252d",
+    "idio_vol_252d",
+    "total_vol_252d",
+    "mkt_corr_252d",
+    "daily_obs_252d"
+  ],
+  "risk_rows": 670562,
+  "sample_permnos": 0,
+  "status": "PASS",
+  "years": [
+    {
+      "beta_nonmissing": 17149,
+      "idio_nonmissing": 17010,
+      "monthly_rows": 17210,
+      "status": "PASS_RESUMED",
+      "year": 1996
+    },
+    {
+      "beta_nonmissing": 20041,
+      "idio_nonmissing": 19896,
+      "monthly_rows": 20117,
+      "status": "PASS_RESUMED",
+      "year": 1997
+    },
+    {
+      "beta_nonmissing": 21634,
+      "idio_nonmissing": 21460,
+      "monthly_rows": 21696,
+      "status": "PASS_RESUMED",
+      "year": 1998
+    },
+    {
+      "beta_nonmissing": 21927,
+      "idio_nonmissing": 21729,
+      "monthly_rows": 22019,
+      "status": "PASS_RESUMED",
+      "year": 1999
+    },
+    {
+      "beta_nonmissing": 20674,
+      "idio_nonmissing": 20455,
+      "monthly_rows": 20743,
+      "status": "PASS_RESUMED",
+      "year": 2000
+    },
+    {
+      "beta_nonmissing": 18917,
+      "idio_nonmissing": 18797,
+      "monthly_rows": 18977,
+      "status": "PASS_RESUMED",
+      "year": 2001
+    },
+    {
+      "beta_nonmissing": 18408,
+      "idio_nonmissing": 18298,
+      "monthly_rows": 18439,
+      "status": "PASS_RESUMED",
+      "year": 2002
+    },
+    {
+      "beta_nonmissing": 18473,
+      "idio_nonmissing": 18439,
+      "monthly_rows": 18500,
+      "status": "PASS_RESUMED",
+      "year": 2003
+    },
+    {
+      "beta_nonmissing": 20191,
+      "idio_nonmissing": 20108,
+      "monthly_rows": 20272,
+      "status": "PASS_RESUMED",
+      "year": 2004
+    },
+    {
+      "beta_nonmissing": 21235,
+      "idio_nonmissing": 21049,
+      "monthly_rows": 21357,
+      "status": "PASS_RESUMED",
+      "year": 2005
+    },
+    {
+      "beta_nonmissing": 22604,
+      "idio_nonmissing": 22470,
+      "monthly_rows": 22714,
+      "status": "PASS_RESUMED",
+      "year": 2006
+    },
+    {
+      "beta_nonmissing": 23686,
+      "idio_nonmissing": 23514,
+      "monthly_rows": 23781,
+      "status": "PASS_RESUMED",
+      "year": 2007
+    },
+    {
+      "beta_nonmissing": 21403,
+      "idio_nonmissing": 21300,
+      "monthly_rows": 21468,
+      "status": "PASS_RESUMED",
+      "year": 2008
+    },
+    {
+      "beta_nonmissing": 20298,
+      "idio_nonmissing": 20242,
+      "monthly_rows": 20363,
+      "status": "PASS_RESUMED",
+      "year": 2009
+    },
+    {
+      "beta_nonmissing": 22201,
+      "idio_nonmissing": 22046,
+      "monthly_rows": 22288,
+      "status": "PASS_RESUMED",
+      "year": 2010
+    },
+    {
+      "beta_nonmissing": 22908,
+      "idio_nonmissing": 22741,
+      "monthly_rows": 23028,
+      "status": "PASS_RESUMED",
+      "year": 2011
+    },
+    {
+      "beta_nonmissing": 22906,
+      "idio_nonmissing": 22761,
+      "monthly_rows": 23015,
+      "status": "PASS_RESUMED",
+      "year": 2012
+    },
+    {
+      "beta_nonmissing": 24648,
+      "idio_nonmissing": 24468,
+      "monthly_rows": 24811,
+      "status": "PASS_RESUMED",
+      "year": 2013
+    },
+    {
+      "beta_nonmissing": 25919,
+      "idio_nonmissing": 25641,
+      "monthly_rows": 26093,
+      "status": "PASS_RESUMED",
+      "year": 2014
+    },
+    {
+      "beta_nonmissing": 25856,
+      "idio_nonmissing": 25618,
+      "monthly_rows": 26016,
+      "status": "PASS_RESUMED",
+      "year": 2015
+    },
+    {
+      "beta_nonmissing": 25863,
+      "idio_nonmissing": 25757,
+      "monthly_rows": 25943,
+      "status": "PASS_RESUMED",
+      "year": 2016
+    },
+    {
+      "beta_nonmissing": 25757,
+      "idio_nonmissing": 25624,
+      "monthly_rows": 25839,
+      "status": "PASS_RESUMED",
+      "year": 2017
+    },
+    {
+      "beta_nonmissing": 25700,
+      "idio_nonmissing": 25539,
+      "monthly_rows": 25808,
+      "status": "PASS_RESUMED",
+      "year": 2018
+    },
+    {
+      "beta_nonmissing": 24770,
+      "idio_nonmissing": 24621,
+      "monthly_rows": 24867,
+      "status": "PASS_RESUMED",
+      "year": 2019
+    },
+    {
+      "beta_nonmissing": 24475,
+      "idio_nonmissing": 24318,
+      "monthly_rows": 24609,
+      "status": "PASS_RESUMED",
+      "year": 2020
+    },
+    {
+      "beta_nonmissing": 29409,
+      "idio_nonmissing": 28845,
+      "monthly_rows": 29698,
+      "status": "PASS_RESUMED",
+      "year": 2021
+    },
+    {
+      "beta_nonmissing": 28016,
+      "idio_nonmissing": 27866,
+      "monthly_rows": 28087,
+      "status": "PASS_RESUMED",
+      "year": 2022
+    },
+    {
+      "beta_nonmissing": 26422,
+      "idio_nonmissing": 26345,
+      "monthly_rows": 26479,
+      "status": "PASS_RESUMED",
+      "year": 2023
+    },
+    {
+      "beta_nonmissing": 26250,
+      "idio_nonmissing": 26151,
+      "monthly_rows": 26325,
+      "status": "PASS_RESUMED",
+      "year": 2024
+    },
+    {
+      "status": "SKIP_EMPTY_PANEL",
+      "year": 2025
+    }
+  ]
+}

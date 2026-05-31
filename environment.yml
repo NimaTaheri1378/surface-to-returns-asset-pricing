@@ -1,0 +1,19 @@
+name: surface-to-returns
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - pyarrow
+  - pyyaml
+  - matplotlib
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - pytest
+  - pip
+  - pip:
+      - wrds
+      - lightgbm
+      - shap

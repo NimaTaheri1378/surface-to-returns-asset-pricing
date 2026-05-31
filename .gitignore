@@ -1,0 +1,58 @@
+# Secrets
+.env
+.env.*
+!.env.example
+.codex/
+Surface-to-Returns Asset Pricing Project.md
+
+# Licensed or generated data
+data/raw/
+data/interim/
+data/processed/
+data/external/
+data/cache/
+
+# Run outputs
+logs/
+manifests/run_*/
+manifests/preflight.json
+manifests/wrds_smoke_manifest.json
+manifests/*_smoke_*.json
+manifests/*_pre_external.json
+manifests/*_rich.json
+manifests/svi_refit/2022_12.json
+outputs/figures/
+outputs/reports/
+outputs/models/
+scripts/run_flagship_sdf_full_*.sh
+*.tgz
+*.tar.gz
+*.zip
+!docs/assets/**/*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.venv/
+venv/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Internal handoff notes
+docs/amarel_runbook.md
+docs/completion_audit.md
+docs/implementation_status.md
+docs/public_release_checklist.md

@@ -1,0 +1,34 @@
+{
+  "artifacts": {
+    "panel": "data/processed/panel/surface_characteristic_state_ibes_regsho_panel.parquet"
+  },
+  "created_utc": "2026-05-31T12:06:59+00:00",
+  "ibes_columns": [
+    "ibes_analyst_coverage",
+    "ibes_forecast_dispersion",
+    "ibes_revision_breadth",
+    "ibes_mean_estimate"
+  ],
+  "ibes_link_rows": 10660,
+  "ibes_missingness": {
+    "ibes_analyst_coverage": 0.02329389377865134,
+    "ibes_forecast_dispersion": 0.04427778490281287,
+    "ibes_mean_estimate": 0.02329389377865134,
+    "ibes_revision_breadth": 0.02329389377865134
+  },
+  "ibes_raw_rows": 7822864,
+  "panel": "data/processed/panel/surface_characteristic_state_daily_risk_taq_panel_calib_2015_2024_m12_s50.parquet",
+  "panel_rows": 670562,
+  "sample_permnos": 0,
+  "short_columns": [
+    "regsho_short_share",
+    "regsho_short_exempt_share"
+  ],
+  "short_missingness": {
+    "regsho_short_exempt_share": 0.9991708447541018,
+    "regsho_short_share": 0.9991708447541018
+  },
+  "short_raw_rows": 15883,
+  "short_volume_table": "wrds_shortvolume_samp.wrds_shortvolume_samp",
+  "status": "PASS"
+}
