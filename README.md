@@ -1,6 +1,17 @@
 # Surface-to-Returns: Option-Surface Asset Pricing
 
 [![CI](https://github.com/NimaTaheri1378/surface-to-returns-asset-pricing/actions/workflows/ci.yml/badge.svg)](https://github.com/NimaTaheri1378/surface-to-returns-asset-pricing/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![License](https://img.shields.io/github/license/NimaTaheri1378/surface-to-returns-asset-pricing)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-72%20passing-2f7d32)](tests)
+[![Sample](https://img.shields.io/badge/sample-1996--2024-c77d20)](docs/results.md)
+[![SSVI](https://img.shields.io/badge/SSVI%20surfaces-34%2C800%20passed-2f7d32)](docs/results.md)
+[![Panel](https://img.shields.io/badge/panel-670%2C562%20asset--months-356da3)](docs/results.md)
+[![GPU](https://img.shields.io/badge/compute-2x%20A100%20GPU-76B900?logo=nvidia&logoColor=white)](docs/reproducibility.md)
+[![WRDS](https://img.shields.io/badge/data-WRDS%20%7C%20CRSP%20%7C%20Compustat%20%7C%20OptionMetrics-356da3)](DATA_ACCESS.md)
+[![SDF](https://img.shields.io/badge/model-conditional%20autoencoder%20SDF-8f4f9f)](docs/results.md)
+[![Artifacts](https://img.shields.io/badge/artifacts-figures%20%7C%20tables%20%7C%20reports-d6a53a)](docs/assets)
+[![Repo](https://img.shields.io/badge/repo-recruiter--facing-1f2933)](README.md)
 
 **Headline question:** Do firm-level option-implied volatility surfaces reveal priced tail-insurance states before stock returns move?
 
