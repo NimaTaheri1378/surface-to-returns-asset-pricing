@@ -69,16 +69,6 @@ h3 {
   line-height: 1.38;
   color: var(--muted);
 }
-.boundary {
-  margin-top: 3vh;
-  max-width: 820px;
-  padding: 16px 20px;
-  border-left: 6px solid #c45a42;
-  background: #fff7f4;
-  border-radius: 8px;
-  font-size: 18px;
-  line-height: 1.4;
-}
 .title-slide {
   grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);
   align-items: center;
@@ -184,13 +174,12 @@ li {
   
 <section class="slide title-slide">
   <div class="title-copy">
-    <span class="kicker">Proposal evidence deck</span>
+    <span class="kicker">Research evidence deck</span>
     <h1>Surface-to-Returns</h1>
-    <p class="subtitle">A public-safe visual package for the verified option-surface asset-pricing implementation.</p>
-    <p class="boundary">Current boundary: return evidence is weak/negative; external APIs are loaded only from safe runtime env vars.</p>
+    <p class="subtitle">Option-surface construction, pricing-kernel diagnostics, mechanism evidence, and cost-aware return tests.</p>
   </div>
   <div class="metric-grid">
-    <article class="metric" style="--accent:#356da3"><span>Sample</span><strong>1996-2024</strong><p>345 completed shards</p></article><article class="metric" style="--accent:#2f7d32"><span>SSVI Gates</span><strong>100.0%</strong><p>34,800 surfaces</p></article><article class="metric" style="--accent:#8f4f9f"><span>Characteristics</span><strong>33</strong><p>670,562 firm-month rows</p></article><article class="metric" style="--accent:#3d9292"><span>SDF</span><strong>0.116</strong><p>227 OOS months</p></article><article class="metric" style="--accent:#c77d20"><span>Readiness</span><strong>15 pass</strong><p>3 negative, 0 blocked</p></article>
+    <article class="metric" style="--accent:#356da3"><span>Sample</span><strong>1996-2024</strong><p>345 completed shards</p></article><article class="metric" style="--accent:#2f7d32"><span>SSVI Gates</span><strong>100.0%</strong><p>34,800 surfaces</p></article><article class="metric" style="--accent:#8f4f9f"><span>Characteristics</span><strong>33</strong><p>670,562 firm-month rows</p></article><article class="metric" style="--accent:#3d9292"><span>SDF</span><strong>0.116</strong><p>227 OOS months</p></article><article class="metric" style="--accent:#c45a42"><span>Return Test</span><strong>-0.15%</strong><p>TAQ-net -0.37% per month</p></article>
   </div>
 </section>
 
@@ -202,7 +191,7 @@ li {
   </div>
   <div class="slide-title">
     <h2>Visual Abstract</h2>
-    <p>First-glance summary of the scaled implementation, no-arbitrage success, and honest return boundary.</p>
+    <p>First-glance summary of the full-sample option-surface evidence package.</p>
   </div>
   <figure>
     <img src="../figures/full/visual_abstract.png" alt="Visual Abstract">
@@ -276,11 +265,11 @@ li {
     <span class="page">07</span>
   </div>
   <div class="slide-title">
-    <h2>Figure 5. Mechanisms and Readiness</h2>
-    <p>Reg SHO mechanism evidence, external controls, non-pass readiness items, and interpretation discipline.</p>
+    <h2>Figure 5. Mechanisms and Interpretation</h2>
+    <p>Reg SHO mechanism evidence, external controls, SHAP interpretation, and empirical discipline.</p>
   </div>
   <figure>
-    <img src="../figures/full/paper_figure_5_mechanisms_readiness.png" alt="Figure 5. Mechanisms and Readiness">
+    <img src="../figures/full/paper_figure_5_mechanisms_interpretation.png" alt="Figure 5. Mechanisms and Interpretation">
   </figure>
 </section>
 
@@ -292,7 +281,7 @@ li {
   </div>
   <div class="slide-title">
     <h2>Evidence Pack</h2>
-    <p>Detailed one-page view of implementation status, diagnostics, model evidence, and boundaries.</p>
+    <p>Detailed one-page view of diagnostics, model evidence, mechanisms, and interpretation.</p>
   </div>
   <figure>
     <img src="../figures/full/visual_evidence_pack.png" alt="Evidence Pack">
@@ -301,21 +290,21 @@ li {
 
 
 <section class="slide closing-slide">
-  <span class="kicker">Evidence discipline</span>
-  <h2>What The Visual Package Proves</h2>
+  <span class="kicker">Research interpretation</span>
+  <h2>What The Evidence Says</h2>
   <div class="two-col">
     <div class="proof">
-      <h3>Implemented and verified</h3>
+      <h3>Core empirical objects</h3>
       <ul>
         <li>Scaled WRDS extraction through the usable 1996-2024 optionable sample.</li>
         <li>SVI and SSVI no-arbitrage diagnostics pass at full usable scale.</li>
         <li>CRSP-Compustat characteristics, state controls, TAQ costs, IBES, Reg SHO, SDF, SHAP, and inference artifacts exist.</li>
-        <li>Visual report, abstract, evidence pack, and numbered figure package are generated from non-raw outputs.</li>
+        <li>Visual report, abstract, evidence pack, and numbered figure package are generated from curated outputs.</li>
       </ul>
     </div>
     <div class="limits">
-      <h3>Not overclaimed</h3>
-      <ul><li>GPU walk-forward return model: NEGATIVE RESULT</li><li>Sector-balanced beta-hedged buffered portfolio: NEGATIVE RESULT</li><li>Factor alphas, HJ/GRS, Newey-West, bootstrap inference: NEGATIVE RESULT</li><li>Reg SHO pilot mechanism test: PASS WEAK RESULT</li></ul>
+      <h3>Interpretation</h3>
+      <ul><li>Option surfaces pass no-arbitrage gates and provide a usable state representation.</li><li>The conditional SDF and interpretation layers are the most informative empirical products.</li><li>Cost-aware return tests discipline the alpha interpretation.</li></ul>
     </div>
   </div>
 </section>

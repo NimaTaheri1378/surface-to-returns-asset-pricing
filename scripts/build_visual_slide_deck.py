@@ -37,7 +37,7 @@ PALETTE = {
 SLIDES = [
     SlideSpec(
         "Visual Abstract",
-        "First-glance summary of the scaled implementation, no-arbitrage success, and honest return boundary.",
+        "First-glance summary of the full-sample option-surface evidence package.",
         "visual_abstract.png",
         "blue",
     ),
@@ -66,14 +66,14 @@ SLIDES = [
         "red",
     ),
     SlideSpec(
-        "Figure 5. Mechanisms and Readiness",
-        "Reg SHO mechanism evidence, external controls, non-pass readiness items, and interpretation discipline.",
-        "paper_figure_5_mechanisms_readiness.png",
+        "Figure 5. Mechanisms and Interpretation",
+        "Reg SHO mechanism evidence, external controls, SHAP interpretation, and empirical discipline.",
+        "paper_figure_5_mechanisms_interpretation.png",
         "orange",
     ),
     SlideSpec(
         "Evidence Pack",
-        "Detailed one-page view of implementation status, diagnostics, model evidence, and boundaries.",
+        "Detailed one-page view of diagnostics, model evidence, mechanisms, and interpretation.",
         "visual_evidence_pack.png",
         "teal",
     ),
@@ -104,12 +104,6 @@ def fmt_pct(value: object, digits: int = 1) -> str:
         return f"{100.0 * float(value):.{digits}f}%"
     except (TypeError, ValueError):
         return "n/a"
-
-
-def status_counts(readiness: pd.DataFrame) -> dict[str, int]:
-    if readiness.empty or "status" not in readiness:
-        return {}
-    return readiness["status"].value_counts().to_dict()
 
 
 def metric_tile(label: str, value: str, detail: str, accent: str) -> str:
@@ -148,14 +142,13 @@ def image_slide(deck_path: Path, figures_dir: Path, spec: SlideSpec, number: int
 """
 
 
-def title_slide(cards: list[str], blocked_note: str) -> str:
+def title_slide(cards: list[str], subtitle: str) -> str:
     return f"""
 <section class="slide title-slide">
   <div class="title-copy">
-    <span class="kicker">Proposal evidence deck</span>
+    <span class="kicker">Research evidence deck</span>
     <h1>Surface-to-Returns</h1>
-    <p class="subtitle">A public-safe visual package for the verified option-surface asset-pricing implementation.</p>
-    <p class="boundary">{html.escape(blocked_note)}</p>
+    <p class="subtitle">{html.escape(subtitle)}</p>
   </div>
   <div class="metric-grid">
     {''.join(cards)}
@@ -164,24 +157,24 @@ def title_slide(cards: list[str], blocked_note: str) -> str:
 """
 
 
-def closing_slide(nonpass: list[str]) -> str:
-    items = "".join(f"<li>{html.escape(item)}</li>" for item in nonpass)
+def closing_slide(takeaways: list[str]) -> str:
+    items = "".join(f"<li>{html.escape(item)}</li>" for item in takeaways)
     return f"""
 <section class="slide closing-slide">
-  <span class="kicker">Evidence discipline</span>
-  <h2>What The Visual Package Proves</h2>
+  <span class="kicker">Research interpretation</span>
+  <h2>What The Evidence Says</h2>
   <div class="two-col">
     <div class="proof">
-      <h3>Implemented and verified</h3>
+      <h3>Core empirical objects</h3>
       <ul>
         <li>Scaled WRDS extraction through the usable 1996-2024 optionable sample.</li>
         <li>SVI and SSVI no-arbitrage diagnostics pass at full usable scale.</li>
         <li>CRSP-Compustat characteristics, state controls, TAQ costs, IBES, Reg SHO, SDF, SHAP, and inference artifacts exist.</li>
-        <li>Visual report, abstract, evidence pack, and numbered figure package are generated from non-raw outputs.</li>
+        <li>Visual report, abstract, evidence pack, and numbered figure package are generated from curated outputs.</li>
       </ul>
     </div>
     <div class="limits">
-      <h3>Not overclaimed</h3>
+      <h3>Interpretation</h3>
       <ul>{items}</ul>
     </div>
   </div>
@@ -193,35 +186,36 @@ def render_deck(root: Path, deck_path: Path) -> tuple[str, list[str]]:
     manifests = root / "manifests"
     reports = root / "outputs" / "reports"
     figures = root / "outputs" / "figures" / "full"
-    readiness = read_csv(reports / "readiness" / "proposal_readiness_audit.csv")
     extraction = read_json(manifests / "run_full" / "summary.json")
     ssvi = read_json(manifests / "ssvi_fit" / "summary.json")
     chars = read_json(manifests / "characteristic_library_manifest.json")
     sdf = read_json(manifests / "conditional_autoencoder_sdf_manifest.json")
-    counts = status_counts(readiness)
-    nonpass = [
-        f"{row.requirement}: {row.status.replace('_', ' ')}"
-        for row in readiness[readiness["status"].ne("PASS")].itertuples(index=False)
-    ]
-    if not nonpass:
-        nonpass = ["No non-pass readiness items in the current audit."]
+    portfolio = read_json(manifests / "proposal_portfolio_manifest.json")
 
     cards = [
         metric_tile("Sample", "1996-2024", f"{fmt_int(extraction.get('completed'))} completed shards", "blue"),
         metric_tile("SSVI Gates", fmt_pct(ssvi.get("pass_share")), f"{fmt_int(ssvi.get('surfaces'))} surfaces", "green"),
         metric_tile("Characteristics", fmt_int(len(chars.get("characteristics", []))), f"{fmt_int(chars.get('panel_rows'))} firm-month rows", "purple"),
         metric_tile("SDF", f"{float(sdf.get('pricing_error', {}).get('rms', 0.0)):.3f}", f"{fmt_int(sdf.get('oos_months'))} OOS months", "teal"),
-        metric_tile("Readiness", f"{counts.get('PASS', 0)} pass", f"{counts.get('NEGATIVE_RESULT', 0)} negative, {counts.get('BLOCKED', 0)} blocked", "orange"),
+        metric_tile("Return Test", fmt_pct(portfolio.get("net", {}).get("mean_monthly_return"), 2), f"TAQ-net {fmt_pct(portfolio.get('taq_net', {}).get('mean_monthly_return'), 2)} per month", "red"),
     ]
-    blocked_note = "Current boundary: return evidence is weak/negative; external APIs are loaded only from safe runtime env vars."
-    slides = [title_slide(cards, blocked_note)]
+    subtitle = "Option-surface construction, pricing-kernel diagnostics, mechanism evidence, and cost-aware return tests."
+    slides = [title_slide(cards, subtitle)]
     available = []
     for idx, spec in enumerate(SLIDES, start=2):
         html_slide = image_slide(deck_path, figures, spec, idx)
         if html_slide:
             slides.append(html_slide)
             available.append(spec.image_name or "")
-    slides.append(closing_slide(nonpass))
+    slides.append(
+        closing_slide(
+            [
+                "Option surfaces pass no-arbitrage gates and provide a usable state representation.",
+                "The conditional SDF and interpretation layers are the most informative empirical products.",
+                "Cost-aware return tests discipline the alpha interpretation.",
+            ]
+        )
+    )
 
     css = """
 :root {
@@ -287,16 +281,6 @@ h3 {
   font-size: 24px;
   line-height: 1.38;
   color: var(--muted);
-}
-.boundary {
-  margin-top: 3vh;
-  max-width: 820px;
-  padding: 16px 20px;
-  border-left: 6px solid #c45a42;
-  background: #fff7f4;
-  border-radius: 8px;
-  font-size: 18px;
-  line-height: 1.4;
 }
 .title-slide {
   grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);

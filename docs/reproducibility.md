@@ -56,15 +56,14 @@ export SURFACE_RETURNS_PYTHON="$PY"
 "$PY" scripts/run_shap_interpretation.py
 "$PY" scripts/run_regsho_pilot_did.py --window-start 2004-01-01 --window-end 2006-12-31 --signal-col put_call_iv_spread
 "$PY" scripts/build_evidence_dashboard.py
-"$PY" scripts/build_proposal_readiness_audit.py
 "$PY" scripts/build_visual_abstract.py
 "$PY" scripts/build_paper_figure_package.py
 "$PY" scripts/build_visual_evidence_pack.py
 "$PY" scripts/build_visual_slide_deck.py
 "$PY" scripts/build_visual_pdf_package.py
 "$PY" scripts/build_visual_artifact_index.py
-"$PY" scripts/build_visual_release_audit.py
 "$PY" scripts/build_visual_report.py
+"$PY" scripts/build_visual_artifact_index.py
 ```
 
 ## Output Contract

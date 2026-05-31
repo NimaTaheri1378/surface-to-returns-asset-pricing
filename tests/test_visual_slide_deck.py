@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pandas as pd
-
-from scripts.build_visual_slide_deck import SlideSpec, fmt_int, image_slide, relpath_for_html, status_counts
+from scripts.build_visual_slide_deck import SlideSpec, fmt_int, image_slide, relpath_for_html
 
 
 def test_relpath_for_html_is_portable():
@@ -25,9 +23,6 @@ def test_image_slide_skips_missing_image(tmp_path):
     assert image_slide(deck, figures, SlideSpec("Missing", "No image", "missing.png"), 1) == ""
 
 
-def test_status_and_int_formatters():
-    frame = pd.DataFrame({"status": ["PASS", "PASS", "BLOCKED"]})
-
-    assert status_counts(frame) == {"PASS": 2, "BLOCKED": 1}
+def test_int_formatter():
     assert fmt_int(1234) == "1,234"
     assert fmt_int("bad") == "n/a"

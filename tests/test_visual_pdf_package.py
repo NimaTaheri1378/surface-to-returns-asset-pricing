@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pandas as pd
-
-from scripts.build_visual_pdf_package import PdfFigure, available_figures, fmt_int, fmt_pct, status_counts
+from scripts.build_visual_pdf_package import PdfFigure, available_figures, fmt_int, fmt_pct
 
 
 def test_available_figures_filters_missing_files(tmp_path):
@@ -25,8 +23,3 @@ def test_formatters_are_safe():
     assert fmt_int("x") == "n/a"
     assert fmt_pct(0.125, 1) == "12.5%"
     assert fmt_pct(None) == "n/a"
-
-
-def test_status_counts_handles_empty_and_values():
-    assert status_counts(pd.DataFrame()) == {}
-    assert status_counts(pd.DataFrame({"status": ["PASS", "BLOCKED"]})) == {"PASS": 1, "BLOCKED": 1}

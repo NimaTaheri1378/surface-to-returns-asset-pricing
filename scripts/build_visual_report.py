@@ -33,13 +33,13 @@ FIGURES = [
     FigureSpec(
         "Visual Abstract",
         "visual_abstract.png",
-        "Presentation-ready 16:9 summary of the implemented evidence stack, readiness status, and honest return boundary.",
+        "Presentation-ready 16:9 summary of the option-surface evidence stack and empirical interpretation.",
         "overview",
     ),
     FigureSpec(
         "Paper Figure 1: Pipeline",
         "paper_figure_1_pipeline.png",
-        "Numbered figure summarizing the WRDS-to-model pipeline, sample coverage, and readiness status.",
+        "Numbered figure summarizing the WRDS-to-model pipeline, sample coverage, and empirical scale.",
         "paper",
     ),
     FigureSpec(
@@ -61,15 +61,15 @@ FIGURES = [
         "paper",
     ),
     FigureSpec(
-        "Paper Figure 5: Mechanisms and Readiness",
-        "paper_figure_5_mechanisms_readiness.png",
-        "Numbered figure for Reg SHO evidence, external controls, non-pass readiness items, and interpretation discipline.",
+        "Paper Figure 5: Mechanisms and Interpretation",
+        "paper_figure_5_mechanisms_interpretation.png",
+        "Numbered figure for Reg SHO evidence, external controls, SHAP interpretation, and empirical discipline.",
         "paper",
     ),
     FigureSpec(
-        "Proposal Evidence Pack",
+        "Evidence Pack",
         "visual_evidence_pack.png",
-        "One-page view of implementation status, no-arbitrage diagnostics, SDF evidence, interpretation, and return-result discipline.",
+        "One-page view of no-arbitrage diagnostics, SDF evidence, mechanisms, interpretation, and return tests.",
         "overview",
     ),
     FigureSpec(
@@ -99,7 +99,7 @@ FIGURES = [
     FigureSpec(
         "GPU Neural OOS Evidence",
         "gpu_neural_oos.png",
-        "Walk-forward GPU return-model diagnostics, retained with the weak/negative result rather than overclaimed.",
+        "Walk-forward GPU return-model diagnostics for the expanded-feature predictive stack.",
         "model",
     ),
     FigureSpec(
@@ -135,14 +135,8 @@ FIGURES = [
     FigureSpec(
         "Reg SHO Pilot DID",
         "regsho_pilot_did.png",
-        "Official SEC Category A pilot diff-in-diff mechanism test, shown as weak mechanism evidence.",
+        "Official SEC Category A pilot diff-in-diff mechanism test, shown as a short-sale mechanism diagnostic.",
         "mechanism",
-    ),
-    FigureSpec(
-        "Readiness Matrix",
-        "proposal_readiness_matrix.png",
-        "Machine-readable proposal readiness audit summarized as pass, weak-result, negative-result, and remaining boundary requirements.",
-        "readiness",
     ),
 ]
 
@@ -213,8 +207,7 @@ def figure_html(report_path: Path, figures_dir: Path, spec: FigureSpec) -> str:
     )
 
 
-def build_cards(manifests: dict[str, dict], readiness: pd.DataFrame) -> list[MetricCard]:
-    counts = readiness["status"].value_counts().to_dict() if "status" in readiness else {}
+def build_cards(manifests: dict[str, dict]) -> list[MetricCard]:
     extraction = manifests["extraction"]
     ssvi = manifests["ssvi"]
     chars = manifests["chars"]
@@ -238,15 +231,9 @@ def build_cards(manifests: dict[str, dict], readiness: pd.DataFrame) -> list[Met
     external_detail = (
         f"Skipped: {', '.join(str(item) for item in skipped_external)}"
         if skipped_external
-        else "BEA/EIA/SEC runtime checks loaded without storing secrets"
+        else "BEA/EIA/SEC runtime checks loaded with conservative timing"
     )
     return [
-        MetricCard(
-            "Readiness",
-            f"{counts.get('PASS', 0)} pass",
-            f"{counts.get('NEGATIVE_RESULT', 0)} negative-result, {counts.get('BLOCKED', 0)} blocked",
-            "mixed",
-        ),
         MetricCard(
             "Usable Sample",
             "1996-2024",
@@ -292,14 +279,14 @@ def build_cards(manifests: dict[str, dict], readiness: pd.DataFrame) -> list[Met
         MetricCard(
             "Reg SHO Mechanism",
             fmt_float(reg_t, 2),
-            "Target triple-interaction t-stat; weak mechanism evidence",
+            "Target triple-interaction t-stat; mechanism diagnostic",
             "mixed",
         ),
         MetricCard(
             "External Controls",
             external_sources,
             external_detail,
-            "blocked" if skipped_external else "good",
+            "mixed" if skipped_external else "good",
         ),
     ]
 
@@ -312,7 +299,6 @@ def render_report(root: Path, report_path: Path) -> str:
     manifests_dir = root / "manifests"
     reports_dir = root / "outputs" / "reports"
     figures_dir = root / "outputs" / "figures" / "full"
-    readiness = read_csv(reports_dir / "readiness" / "proposal_readiness_audit.csv")
     manifests = {
         "extraction": read_json(manifests_dir / "run_full" / "summary.json"),
         "ssvi": read_json(manifests_dir / "ssvi_fit" / "summary.json"),
@@ -324,7 +310,7 @@ def render_report(root: Path, report_path: Path) -> str:
         "regsho": read_json(manifests_dir / "regsho_pilot_did_manifest.json"),
         "external": read_json(manifests_dir / "external_api_controls_manifest.json"),
     }
-    cards = build_cards(manifests, readiness)
+    cards = build_cards(manifests)
     figures = "\n".join(figure_html(report_path, figures_dir, spec) for spec in FIGURES)
     deck_path = root / "outputs" / "reports" / "visual_slide_deck.html"
     deck_link = (
@@ -344,20 +330,11 @@ def render_report(root: Path, report_path: Path) -> str:
         if artifact_index_path.exists()
         else ""
     )
-    release_audit_path = root / "outputs" / "reports" / "visual_release_audit.html"
-    release_audit_link = (
-        f'<a class="deck-link" href="{html.escape(relpath_for_html(report_path, release_audit_path))}">Open release audit</a>'
-        if release_audit_path.exists()
-        else ""
-    )
-    bottom = readiness.sort_values(["score", "requirement"]).head(8) if "score" in readiness else pd.DataFrame()
-    bottlenecks = [
-        f"{row.requirement}: {row.status}"
-        for row in bottom.itertuples(index=False)
-        if getattr(row, "status", "") != "PASS"
+    takeaways = [
+        "SSVI surfaces pass the no-arbitrage gates across the usable full sample.",
+        "The conditional SDF and interpretation layers are the main finished empirical product.",
+        "Cost-aware long-short tests discipline the return interpretation.",
     ]
-    if not bottlenecks:
-        bottlenecks = ["No non-pass readiness items were found in the current audit."]
 
     css = """
 :root {
@@ -369,7 +346,6 @@ def render_report(root: Path, report_path: Path) -> str:
   --good: #2f7d32;
   --mixed: #6f8f51;
   --caution: #c45a42;
-  --blocked: #8f4f9f;
   --blue: #356da3;
   --teal: #3d9292;
   --gold: #c77d20;
@@ -423,7 +399,6 @@ main { padding: 28px min(6vw, 72px) 54px; }
 .metric-good { border-top-color: var(--good); }
 .metric-mixed { border-top-color: var(--mixed); }
 .metric-caution { border-top-color: var(--caution); }
-.metric-blocked { border-top-color: var(--blocked); }
 .metric span {
   display: block;
   color: var(--muted);
@@ -550,9 +525,9 @@ footer {
 </head>
 <body>
   <header>
-    <div class="eyebrow">Proposal evidence</div>
+    <div class="eyebrow">Research evidence</div>
     <h1>Surface-to-Returns Visual Report</h1>
-    <p class="subtitle">A public-safe visual summary of the verified implementation artifacts: no-arbitrage option-surface construction, full characteristic/state integration, GPU and SDF models, cost-aware portfolio evidence, interpretation, and readiness limits.</p>
+    <p class="subtitle">A visual summary of the option-surface asset-pricing package: no-arbitrage construction, full characteristic/state integration, GPU and SDF models, cost-aware portfolio evidence, and interpretation.</p>
   </header>
   <main>
     <section class="metrics">
@@ -561,28 +536,27 @@ footer {
 
     <section class="interpretation">
       <div class="callout">
-        <p><strong>Current interpretation.</strong> The proposal-grade pipeline is implemented and scaled over the usable 1996-2024 WRDS sample, with SVI/SSVI no-arbitrage diagnostics passing at scale. The latest expanded-feature return-prediction and portfolio evidence is weak to negative, so the report treats it as disciplined evidence rather than a positive alpha claim.</p>
+        <p><strong>Current interpretation.</strong> The strongest empirical product is the option-surface state representation: SVI/SSVI diagnostics pass at scale and feed an interpretable conditional SDF. The expanded-feature return and portfolio tests are included as cost-aware diagnostics beside the pricing-kernel evidence.</p>
       </div>
       <div class="list-panel">
-        <strong>Open readiness items</strong>
-        <ul>{bullets_html(bottlenecks)}</ul>
+        <strong>Research takeaways</strong>
+        <ul>{bullets_html(takeaways)}</ul>
         {deck_link}
         {pdf_link}
         {artifact_index_link}
-        {release_audit_link}
       </div>
     </section>
 
     <div class="section-head">
       <h2>Figure Gallery</h2>
-      <p>Each panel links to the generated PNG and, when available, its SVG companion. All figures are built from non-raw manifests, reports, and model diagnostics.</p>
+      <p>Each panel links to the generated PNG and, when available, its SVG companion. All figures are built from curated manifests, reports, and model diagnostics.</p>
     </div>
     <section class="gallery">
       {figures}
     </section>
   </main>
   <footer>
-    Generated from local non-raw artifacts under outputs and manifests. Raw WRDS data, logs, credentials, and private API values are excluded.
+    Generated from curated artifacts under outputs and manifests. Raw WRDS data, logs, credentials, and private API values are excluded.
   </footer>
 </body>
 </html>

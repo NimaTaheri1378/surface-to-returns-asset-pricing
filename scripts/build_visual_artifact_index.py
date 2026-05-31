@@ -26,7 +26,6 @@ INCLUDE_MANIFESTS = [
     "visual_pdf_package_manifest.json",
     "visual_report_manifest.json",
     "visual_slide_deck_manifest.json",
-    "proposal_readiness_audit_manifest.json",
 ]
 EXCLUDE_NAMES = {
     "visual_report_screenshot.png",
@@ -172,7 +171,7 @@ def render_html(artifacts: list[Artifact]) -> str:
 <body>
   <header>
     <h1>Visual Artifact Index</h1>
-    <p>Public-safe inventory of generated figures, reports, manifests, checksums, dimensions, and PDF pages.</p>
+    <p>Inventory of generated figures, reports, manifests, checksums, dimensions, and PDF pages.</p>
   </header>
   <main>
     <p>{len(artifacts)} artifacts indexed. Full SHA256 hashes are in the CSV and JSON manifest.</p>

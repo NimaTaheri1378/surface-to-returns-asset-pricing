@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "deck": "outputs/reports/visual_slide_deck.html",
+  "deck": "outputs\\reports\\visual_slide_deck.html",
   "slides": 9,
   "figures_available": [
     "visual_abstract.png",
@@ -8,7 +8,7 @@
     "paper_figure_2_surface_quality.png",
     "paper_figure_3_sdf_interpretation.png",
     "paper_figure_4_return_evidence.png",
-    "paper_figure_5_mechanisms_readiness.png",
+    "paper_figure_5_mechanisms_interpretation.png",
     "visual_evidence_pack.png"
   ]
 }

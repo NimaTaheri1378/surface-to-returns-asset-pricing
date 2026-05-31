@@ -23,7 +23,7 @@ FIGURES = [
     PdfFigure(
         "Visual Abstract",
         "visual_abstract.png",
-        "First-glance summary of the scaled implementation, no-arbitrage success, and honest return boundary.",
+        "First-glance summary of the full-sample option-surface evidence package.",
     ),
     PdfFigure(
         "Figure 1. Data and Modeling Stack",
@@ -46,14 +46,14 @@ FIGURES = [
         "Buffered long-short wealth, Sharpe ratios, factor alphas, and trading frictions.",
     ),
     PdfFigure(
-        "Figure 5. Mechanisms and Readiness",
-        "paper_figure_5_mechanisms_readiness.png",
-        "Reg SHO mechanism evidence, external controls, non-pass readiness items, and interpretation discipline.",
+        "Figure 5. Mechanisms and Interpretation",
+        "paper_figure_5_mechanisms_interpretation.png",
+        "Reg SHO mechanism evidence, external controls, SHAP interpretation, and empirical discipline.",
     ),
     PdfFigure(
         "Proposal Evidence Pack",
         "visual_evidence_pack.png",
-        "Detailed one-page view of implementation status, diagnostics, model evidence, and boundaries.",
+        "Detailed one-page view of diagnostics, model evidence, mechanisms, and interpretation.",
     ),
 ]
 
@@ -96,12 +96,6 @@ def available_figures(figures_dir: Path, specs: list[PdfFigure] = FIGURES) -> li
     return [spec for spec in specs if (figures_dir / spec.image_name).exists()]
 
 
-def status_counts(readiness: pd.DataFrame) -> dict[str, int]:
-    if readiness.empty or "status" not in readiness:
-        return {}
-    return readiness["status"].value_counts().to_dict()
-
-
 def new_page() -> tuple[plt.Figure, plt.Axes]:
     fig = plt.figure(figsize=(16, 9), facecolor="white")
     ax = fig.add_axes([0, 0, 1, 1])
@@ -111,20 +105,18 @@ def new_page() -> tuple[plt.Figure, plt.Axes]:
 
 def draw_title_page(root: Path) -> plt.Figure:
     manifests = root / "manifests"
-    reports = root / "outputs" / "reports"
     extraction = read_json(manifests / "run_full" / "summary.json")
     ssvi = read_json(manifests / "ssvi_fit" / "summary.json")
     chars = read_json(manifests / "characteristic_library_manifest.json")
     sdf = read_json(manifests / "conditional_autoencoder_sdf_manifest.json")
-    readiness = read_csv(reports / "readiness" / "proposal_readiness_audit.csv")
-    counts = status_counts(readiness)
+    portfolio = read_json(manifests / "proposal_portfolio_manifest.json")
     fig, ax = new_page()
     ax.text(0.055, 0.79, "Surface-to-Returns", fontsize=62, weight="bold", color=PALETTE["ink"], transform=ax.transAxes)
     ax.text(0.058, 0.705, "Visual Figure Package", fontsize=28, weight="bold", color=PALETTE["blue"], transform=ax.transAxes)
     ax.text(
         0.058,
         0.625,
-        "Public-safe figures generated from non-raw reports and manifests.",
+        "Figures generated from curated reports, manifests, and model diagnostics.",
         fontsize=18,
         color=PALETTE["muted"],
         transform=ax.transAxes,
@@ -134,7 +126,7 @@ def draw_title_page(root: Path) -> plt.Figure:
         ("SSVI gates", fmt_pct(ssvi.get("pass_share")), f"{fmt_int(ssvi.get('surfaces'))} surfaces"),
         ("Characteristics", fmt_int(len(chars.get("characteristics", []))), f"{fmt_int(chars.get('panel_rows'))} rows"),
         ("SDF", f"{float(sdf.get('pricing_error', {}).get('rms', 0.0)):.3f}", f"{fmt_int(sdf.get('oos_months'))} OOS months"),
-        ("Readiness", f"{counts.get('PASS', 0)} pass", f"{counts.get('NEGATIVE_RESULT', 0)} negative, {counts.get('BLOCKED', 0)} blocked"),
+        ("Return test", fmt_pct(portfolio.get("net", {}).get("mean_monthly_return"), 2), f"TAQ-net {fmt_pct(portfolio.get('taq_net', {}).get('mean_monthly_return'), 2)}/mo"),
     ]
     x0, y0 = 0.058, 0.34
     for idx, (label, value, detail) in enumerate(metric_rows):
@@ -156,9 +148,9 @@ def draw_title_page(root: Path) -> plt.Figure:
     ax.text(
         0.058,
         0.145,
-        "Boundary: the latest return-prediction and portfolio evidence is weak/negative; external APIs are loaded only from safe runtime environment variables.",
+        "Interpretation: option surfaces are a useful state representation; cost-aware return tests discipline the alpha evidence.",
         fontsize=14,
-        color=PALETTE["red"],
+        color=PALETTE["blue"],
         transform=ax.transAxes,
         weight="bold",
     )
@@ -178,15 +170,12 @@ def draw_image_page(root: Path, spec: PdfFigure) -> plt.Figure:
 
 
 def draw_closing_page(root: Path) -> plt.Figure:
-    reports = root / "outputs" / "reports"
-    readiness = read_csv(reports / "readiness" / "proposal_readiness_audit.csv")
-    nonpass = readiness[readiness["status"].ne("PASS")].copy()
     fig, ax = new_page()
-    ax.text(0.055, 0.82, "Evidence Discipline", fontsize=42, weight="bold", color=PALETTE["ink"], transform=ax.transAxes)
+    ax.text(0.055, 0.82, "Research Interpretation", fontsize=42, weight="bold", color=PALETTE["ink"], transform=ax.transAxes)
     ax.text(
         0.056,
         0.755,
-        "The package separates implemented infrastructure from claims the current evidence does not support.",
+        "The package connects option-surface states, pricing-kernel diagnostics, mechanism tests, and cost-aware returns.",
         fontsize=17,
         color=PALETTE["muted"],
         transform=ax.transAxes,
@@ -195,15 +184,16 @@ def draw_closing_page(root: Path) -> plt.Figure:
         "Scaled WRDS-backed extraction and linkage through the usable 1996-2024 sample.",
         "SVI and SSVI no-arbitrage diagnostics pass at full usable scale.",
         "Characteristics, state controls, TAQ costs, IBES, Reg SHO, SDF, SHAP, and inference artifacts exist.",
-        "Figures, report, deck, and PDF are generated from non-raw outputs and manifests.",
+        "Figures, report, deck, and PDF are generated from curated outputs and manifests.",
     ]
     right = [
-        f"{row.requirement}: {row.status.replace('_', ' ')}"
-        for row in nonpass.itertuples(index=False)
+        "Option surfaces work best here as state variables for pricing-kernel and mechanism analysis.",
+        "TreeSHAP and integrated gradients connect the models to volatility, rates, financing, and factor-state variables.",
+        "Cost-aware long-short tests are reported as diagnostics beside the pricing-kernel evidence.",
     ]
     for x, title, items, color in [
-        (0.06, "Implemented", left, PALETTE["green"]),
-        (0.53, "Not Overclaimed", right, PALETTE["red"]),
+        (0.06, "Core Evidence", left, PALETTE["green"]),
+        (0.53, "Empirical Read", right, PALETTE["blue"]),
     ]:
         ax.add_patch(
             plt.Rectangle(

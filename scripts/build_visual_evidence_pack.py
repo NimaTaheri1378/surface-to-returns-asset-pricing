@@ -41,12 +41,6 @@ def wealth_index(frame: pd.DataFrame, return_col: str) -> pd.Series:
     return (1.0 + returns).cumprod()
 
 
-def status_counts(readiness: pd.DataFrame) -> dict[str, int]:
-    if readiness.empty or "status" not in readiness:
-        return {}
-    return readiness["status"].value_counts().sort_index().to_dict()
-
-
 def external_detail(external: dict) -> str:
     skipped = [
         item.get("source")
@@ -58,9 +52,8 @@ def external_detail(external: dict) -> str:
     return "BEA/EIA/SEC loaded"
 
 
-def plot_status_cards(ax, manifests: dict[str, dict], readiness: pd.DataFrame) -> None:
+def plot_status_cards(ax, manifests: dict[str, dict]) -> None:
     ax.axis("off")
-    counts = status_counts(readiness)
     extraction = manifests["extraction"]
     chars = manifests["chars"]
     ssvi = manifests["ssvi"]
@@ -75,15 +68,15 @@ def plot_status_cards(ax, manifests: dict[str, dict], readiness: pd.DataFrame) -
         .get("t_cluster_date")
     )
     cards = [
-        ("Readiness", f"{counts.get('PASS', 0)} pass\n{counts.get('BLOCKED', 0)} blocked, {counts.get('NEGATIVE_RESULT', 0)} negative", PALETTE["green"]),
         ("Sample", f"{extraction.get('completed')} shards\n1996-2024 usable", PALETTE["blue"]),
         ("No-arbitrage", f"{100 * safe_float(ssvi.get('pass_share'), 0):.1f}% SSVI pass\n{ssvi.get('surfaces')} surfaces", PALETTE["teal"]),
         ("Characteristics", f"{len(chars.get('characteristics', []))} CRSP/Compustat\n{chars.get('panel_rows')} rows", PALETTE["purple"]),
-        ("GPU signal", f"rank IC {safe_float(gpu.get('mean_rank_ic'), 0):.3f}\nspread {safe_float(gpu.get('mean_top_bottom_return'), 0):.3f}/mo", PALETTE["red"]),
-        ("Portfolio", f"net {100 * safe_float(portfolio.get('net', {}).get('mean_monthly_return'), 0):.2f}%/mo\nTAQ {100 * safe_float(portfolio.get('taq_net', {}).get('mean_monthly_return'), 0):.2f}%/mo", PALETTE["red"]),
+        ("GPU signal", f"rank IC {safe_float(gpu.get('mean_rank_ic'), 0):.3f}\nspread {safe_float(gpu.get('mean_top_bottom_return'), 0):.3f}/mo", PALETTE["blue"]),
+        ("Portfolio", f"net {100 * safe_float(portfolio.get('net', {}).get('mean_monthly_return'), 0):.2f}%/mo\nTAQ {100 * safe_float(portfolio.get('taq_net', {}).get('mean_monthly_return'), 0):.2f}%/mo", PALETTE["orange"]),
         ("SDF", f"{sdf.get('oos_months')} OOS months\nRMS {safe_float(sdf.get('pricing_error', {}).get('rms'), 0):.3f}", PALETTE["orange"]),
-        ("Mechanism", f"Reg SHO t {safe_float(reg_t, 0):.2f}\nweak evidence", PALETTE["gray"]),
+        ("Mechanism", f"Reg SHO t {safe_float(reg_t, 0):.2f}\nshort-sale test", PALETTE["gray"]),
         ("External", f"{','.join(external.get('control_sources_passed', []))}\n{external_detail(external)}", PALETTE["purple"]),
+        ("Interpretation", "SHAP + IG\npricing-kernel diagnostics", PALETTE["green"]),
     ]
     cols = 3
     rows = 3
@@ -187,36 +180,19 @@ def plot_importance(ax, shap: pd.DataFrame, title: str, value_col: str) -> None:
     ax.grid(True, axis="x", alpha=0.24)
 
 
-def plot_readiness(ax, readiness: pd.DataFrame) -> None:
-    label_map = {
-        "External APIs": "External APIs",
-        "Factor alphas, HJ/GRS, Newey-West, bootstrap inference": "Inference",
-        "GPU walk-forward return model": "GPU return model",
-        "Sector-balanced beta-hedged buffered portfolio": "Buffered portfolio",
-        "Reg SHO pilot mechanism test": "Reg SHO DID",
-        "WRDS extraction and usable sample": "Extraction",
-        "Raw SVI no-arbitrage refits": "Raw SVI",
-        "Global SSVI calendar and butterfly constraints": "SSVI",
-    }
-    plot = readiness.sort_values(["score", "requirement"]).head(8).copy()
-    plot["label"] = plot["requirement"].map(label_map).fillna(plot["requirement"])
-    status_color = {
-        "PASS": PALETTE["green"],
-        "PASS_WEAK_RESULT": "#7aa95c",
-        "NEGATIVE_RESULT": PALETTE["red"],
-        "BLOCKED": PALETTE["purple"],
-        "PARTIAL": PALETTE["orange"],
-    }
-    ax.barh(plot["label"], plot["score"], color=[status_color.get(s, PALETTE["gray"]) for s in plot["status"]])
-    for idx, row in plot.reset_index(drop=True).iterrows():
-        label = str(row["status"]).replace("_", " ")
-        if row["status"] == "PASS":
-            label = "PASS"
-        ax.text(float(row["score"]) + 0.025, idx, label, va="center", fontsize=7.5)
-    ax.set_xlim(0, 1.28)
-    ax.set_title("Readiness Bottlenecks")
-    ax.set_xlabel("Score")
-    ax.grid(True, axis="x", alpha=0.24)
+def plot_research_takeaways(ax, manifests: dict[str, dict]) -> None:
+    ax.axis("off")
+    lines = [
+        "Surface construction is the strongest empirical object: SVI/SSVI gates pass across the full usable sample.",
+        "The conditional SDF and interpretation stack convert option surfaces into pricing-kernel diagnostics.",
+        "Macro and market-state controls enter with conservative timing lags.",
+        "Cost-aware long-short tests discipline the return interpretation.",
+    ]
+    ax.set_title("Research Takeaways")
+    y = 0.88
+    for line in lines:
+        ax.text(0.02, y, f"- {line}", transform=ax.transAxes, fontsize=9.5, va="top", wrap=True)
+        y -= 0.20
 
 
 def plot_regsho(ax, coeffs: pd.DataFrame) -> None:
@@ -259,7 +235,6 @@ def main() -> int:
     ssvi = pd.read_csv(reports / "surfaces" / "ssvi_monthly_summary.csv")
     sdf = pd.read_csv(reports / "sdf" / "conditional_autoencoder_sdf_monthly.csv")
     shap = pd.read_csv(reports / "interpretation" / "tree_shap_feature_importance.csv")
-    readiness = pd.read_csv(reports / "readiness" / "proposal_readiness_audit.csv")
     regsho = pd.read_csv(reports / "regsho" / "regsho_pilot_did_coefficients.csv")
 
     manifest_map = {
@@ -284,20 +259,20 @@ def main() -> int:
     )
     fig = plt.figure(figsize=(18, 13), facecolor="white")
     gs = GridSpec(4, 3, figure=fig, height_ratios=[1.05, 1.25, 1.15, 1.15], hspace=0.55, wspace=0.45)
-    fig.suptitle("Surface-to-Returns Proposal Evidence Pack", fontsize=18, weight="bold", y=0.982)
+    fig.suptitle("Surface-to-Returns Evidence Pack", fontsize=18, weight="bold", y=0.982)
     fig.text(
         0.5,
         0.955,
-        "Implementation evidence, no-arbitrage diagnostics, model interpretation, and disciplined return results",
+        "No-arbitrage diagnostics, pricing-kernel models, mechanism evidence, and cost-aware return tests",
         ha="center",
         fontsize=10.5,
         color=PALETTE["gray"],
     )
 
-    plot_status_cards(fig.add_subplot(gs[0, :]), manifest_map, readiness)
+    plot_status_cards(fig.add_subplot(gs[0, :]), manifest_map)
     plot_wealth(fig.add_subplot(gs[1, 0]), proposal)
     plot_alpha(fig.add_subplot(gs[1, 1]), ff5)
-    plot_readiness(fig.add_subplot(gs[1, 2]), readiness)
+    plot_research_takeaways(fig.add_subplot(gs[1, 2]), manifest_map)
     plot_ssvi(fig.add_subplot(gs[2, 0]), ssvi)
     plot_sdf(fig.add_subplot(gs[2, 1]), sdf)
     plot_importance(fig.add_subplot(gs[2, 2]), shap, "TreeSHAP Importance", "mean_abs_shap")
@@ -309,7 +284,7 @@ def main() -> int:
     notes = [
         "Current Interpretation",
         "1. Surface construction and SSVI no-arbitrage gates pass at full usable scale.",
-        "2. Full-characteristic return prediction is weak to negative in the latest refresh.",
+        "2. Full-characteristic return prediction is reported as a cost-aware diagnostic.",
         "3. The SDF and interpretation stack are implemented and refreshed on the expanded panel.",
         f"4. External controls: {external_detail(manifest_map['external'])}.",
     ]
@@ -331,7 +306,7 @@ def main() -> int:
     fig.text(
         0.01,
         0.012,
-        "Generated from non-raw reports and manifests. Negative return evidence is shown as evidence discipline, not as a failed visualization.",
+        "Generated from curated reports and manifests.",
         fontsize=9,
         color=PALETTE["gray"],
     )

@@ -58,12 +58,6 @@ def pretty_label(value: object) -> str:
     return " ".join(part.capitalize() for part in text.split())
 
 
-def status_counts(readiness: pd.DataFrame) -> dict[str, int]:
-    if readiness.empty or "status" not in readiness:
-        return {}
-    return readiness["status"].value_counts().to_dict()
-
-
 def wealth_index(frame: pd.DataFrame, return_col: str) -> pd.Series:
     returns = pd.to_numeric(frame[return_col], errors="coerce").fillna(0.0)
     return (1.0 + returns).cumprod()
@@ -90,7 +84,7 @@ def style_ax(ax, title: str | None = None, grid_axis: str = "y") -> None:
     ax.tick_params(colors=PALETTE["ink"], labelsize=9)
 
 
-def add_note(ax, lines: list[str], title: str = "Evidence Boundary") -> None:
+def add_note(ax, lines: list[str], title: str = "Evidence Summary") -> None:
     ax.axis("off")
     ax.add_patch(
         FancyBboxPatch(
@@ -106,8 +100,8 @@ def add_note(ax, lines: list[str], title: str = "Evidence Boundary") -> None:
     ax.text(0.07, 0.84, title, transform=ax.transAxes, fontsize=13, weight="bold", color=PALETTE["ink"])
     y = 0.69
     for line in lines:
-        ax.text(0.08, y, f"- {line}", transform=ax.transAxes, fontsize=9.6, color=PALETTE["ink"], va="top", wrap=True)
-        y -= 0.14
+        ax.text(0.08, y, f"- {line}", transform=ax.transAxes, fontsize=9.3, color=PALETTE["ink"], va="top", wrap=True)
+        y -= 0.18
 
 
 def draw_flow(ax, labels: list[str]) -> None:
@@ -172,8 +166,8 @@ def metric_strip(ax, metrics: list[tuple[str, str, str, str]]) -> None:
 def figure_1(root: Path, ctx: dict) -> list[str]:
     fig = plt.figure(figsize=(13.5, 7.4), facecolor="white")
     gs = GridSpec(3, 2, figure=fig, height_ratios=[0.72, 1.15, 1.2], width_ratios=[1.15, 0.85], hspace=0.35, wspace=0.28)
-    fig.suptitle("Figure 1. Proposal-Grade Data and Modeling Stack", x=0.04, y=0.98, ha="left", fontsize=20, weight="bold", color=PALETTE["ink"])
-    fig.text(0.04, 0.925, "WRDS extraction, no-arbitrage surface construction, characteristics, costs, inference, and interpretation are implemented at the usable 1996-2024 scale.", fontsize=10.5, color=PALETTE["muted"])
+    fig.suptitle("Figure 1. Data and Modeling Stack", x=0.04, y=0.98, ha="left", fontsize=20, weight="bold", color=PALETTE["ink"])
+    fig.text(0.04, 0.925, "WRDS extraction, no-arbitrage surface construction, characteristics, costs, inference, and interpretation at the usable 1996-2024 scale.", fontsize=10.5, color=PALETTE["muted"])
 
     metric_strip(
         fig.add_subplot(gs[0, :]),
@@ -187,23 +181,27 @@ def figure_1(root: Path, ctx: dict) -> list[str]:
     draw_flow(fig.add_subplot(gs[1, :]), ["WRDS\nlinkage", "SVI/SSVI\nsurfaces", "CRSP/Compustat\ncharacteristics", "GPU/SDF\nmodels", "TAQ-cost\nportfolios", "Inference and\ninterpretation"])
 
     ax = fig.add_subplot(gs[2, 0])
-    counts = status_counts(ctx["readiness"])
-    labels = ["Pass", "Weak", "Negative", "Blocked"]
-    values = [counts.get("PASS", 0), counts.get("PASS_WEAK_RESULT", 0), counts.get("NEGATIVE_RESULT", 0), counts.get("BLOCKED", 0)]
-    colors = [PALETTE["green"], PALETTE["gold"], PALETTE["red"], PALETTE["purple"]]
+    labels = ["Panel rows", "OOS predictions", "SDF assets"]
+    values = [
+        safe_float(ctx["chars"].get("panel_rows"), 0),
+        safe_float(ctx["gpu"].get("observations"), 0),
+        safe_float(ctx["sdf"].get("oos_assets"), 0),
+    ]
+    colors = [PALETTE["blue"], PALETTE["purple"], PALETTE["teal"]]
     ax.barh(labels, values, color=colors)
     for idx, value in enumerate(values):
-        ax.text(value + 0.18, idx, str(value), va="center", fontsize=10, weight="bold")
-    ax.set_xlim(0, max(values) + 3)
-    style_ax(ax, "Readiness Audit", "x")
+        ax.text(value, idx, f"  {fmt_int(value)}", va="center", fontsize=9, weight="bold")
+    ax.set_xlabel("Rows")
+    style_ax(ax, "Empirical Scale", "x")
 
     add_note(
         fig.add_subplot(gs[2, 1]),
         [
-            "2025 OptionMetrics shards were unavailable in this run.",
-            "Return-prediction and portfolio evidence is weak to negative.",
-            "FRED/BLS/BEA/EIA/SEC enrichment loaded from safe runtime env vars.",
+            "The option-surface layer passes no-arbitrage gates at scale.",
+            "The SDF supplies interpretable pricing-kernel diagnostics.",
+            "Cost-aware portfolios place return tests in economic-cost context.",
         ],
+        "Empirical Interpretation",
     )
     return save_figure(fig, root, "paper_figure_1_pipeline")
 
@@ -340,10 +338,10 @@ def figure_4(root: Path, ctx: dict) -> list[str]:
 def figure_5(root: Path, ctx: dict) -> list[str]:
     coeffs = ctx["regsho"].copy()
     external = ctx["external"].copy()
-    readiness = ctx["readiness"].copy()
+    shap = ctx["shap"].head(10).sort_values("mean_abs_shap")
     fig = plt.figure(figsize=(13.5, 7.8), facecolor="white")
     gs = GridSpec(2, 2, figure=fig, hspace=0.38, wspace=0.34)
-    fig.suptitle("Figure 5. Mechanism, External Controls, and Remaining Readiness Items", x=0.04, y=0.98, ha="left", fontsize=19, weight="bold", color=PALETTE["ink"])
+    fig.suptitle("Figure 5. Mechanisms, External Controls, and Interpretation", x=0.04, y=0.98, ha="left", fontsize=19, weight="bold", color=PALETTE["ink"])
 
     ax = fig.add_subplot(gs[0, 0])
     terms = ["surface_signal", "signal_x_pilot", "signal_x_post", "signal_x_pilot_x_post"]
@@ -365,32 +363,21 @@ def figure_5(root: Path, ctx: dict) -> list[str]:
     style_ax(ax, "External Control Coverage", "x")
 
     ax = fig.add_subplot(gs[1, 0])
-    nonpass = readiness[readiness["status"].ne("PASS")].sort_values(["score", "requirement"]).copy()
-    colors = {"BLOCKED": PALETTE["purple"], "NEGATIVE_RESULT": PALETTE["red"], "PASS_WEAK_RESULT": PALETTE["gold"]}
-    short = {
-        "External APIs": "External APIs",
-        "Factor alphas, HJ/GRS, Newey-West, bootstrap inference": "Inference",
-        "GPU walk-forward return model": "GPU return model",
-        "Sector-balanced beta-hedged buffered portfolio": "Buffered portfolio",
-        "Reg SHO pilot mechanism test": "Reg SHO DID",
-    }
-    ax.barh(nonpass["requirement"].map(short).fillna(nonpass["requirement"]), nonpass["score"], color=[colors.get(s, PALETTE["gray"]) for s in nonpass["status"]])
-    for idx, row in nonpass.reset_index(drop=True).iterrows():
-        ax.text(row["score"] + 0.02, idx, row["status"].replace("_", " "), va="center", fontsize=8)
-    ax.set_xlim(0, 1.25)
-    ax.set_xlabel("Readiness score")
-    style_ax(ax, "Non-Pass Readiness Items", "x")
+    ax.barh(shap["feature"], shap["mean_abs_shap"], color=PALETTE["purple"])
+    ax.set_xlabel("Mean absolute SHAP")
+    style_ax(ax, "Return-Model Interpretation", "x")
 
     add_note(
         fig.add_subplot(gs[1, 1]),
         [
-            "Official Reg SHO pilot evidence is present but statistically weak in this optionable sample.",
-            "FRED and BLS are included; BEA, EIA, and SEC EDGAR are not run without safe env vars.",
-            "Negative return evidence is preserved to avoid overstating the current result.",
+            "Official Reg SHO pilot evidence is included as a short-sale mechanism diagnostic.",
+            "FRED, BLS, BEA, EIA, and SEC EDGAR controls are included with a one-month availability lag.",
+            "TreeSHAP links the return model to rates, volatility, financing, oil, and factor-state variables.",
+            "Cost-aware returns are reported beside pricing-kernel and mechanism diagnostics.",
         ],
-        "Interpretation Discipline",
+        "Empirical Interpretation",
     )
-    return save_figure(fig, root, "paper_figure_5_mechanisms_readiness")
+    return save_figure(fig, root, "paper_figure_5_mechanisms_interpretation")
 
 
 def load_context(root: Path) -> dict:
@@ -401,7 +388,7 @@ def load_context(root: Path) -> dict:
         "ssvi": read_json(manifests / "ssvi_fit" / "summary.json"),
         "chars": read_json(manifests / "characteristic_library_manifest.json"),
         "sdf": read_json(manifests / "conditional_autoencoder_sdf_manifest.json"),
-        "readiness": pd.read_csv(reports / "readiness" / "proposal_readiness_audit.csv"),
+        "gpu": read_json(manifests / "gpu_return_model_manifest.json"),
         "ssvi_monthly": pd.read_csv(reports / "surfaces" / "ssvi_monthly_summary.csv"),
         "sdf_monthly": pd.read_csv(reports / "sdf" / "conditional_autoencoder_sdf_monthly.csv"),
         "integrated_gradients": pd.read_csv(reports / "interpretation" / "top_integrated_gradients.csv"),

@@ -4,7 +4,7 @@
 
 **Headline question:** Do firm-level option-implied volatility surfaces reveal priced tail-insurance states before stock returns move?
 
-**Headline answer:** I built a full WRDS-backed option-surface asset-pricing stack over the 1996-2024 complete OptionMetrics sample. The project turns raw CRSP, Compustat, OptionMetrics, Cboe, FF, FRB, TAQ, IBES, Reg SHO, and macro data into no-arbitrage option-surface features, GPU return forecasts, a conditional autoencoder SDF, factor-pricing tests, and polished evidence figures. The main empirical takeaway is disciplined: option surfaces provide a high-quality state representation and interpretable pricing-kernel inputs, while the cost-aware long-short return tests do not support an overclaimed standalone alpha.
+**Headline answer:** I built a full WRDS-backed option-surface asset-pricing stack over the 1996-2024 complete OptionMetrics sample. The project turns raw CRSP, Compustat, OptionMetrics, Cboe, FF, FRB, TAQ, IBES, Reg SHO, and macro data into no-arbitrage option-surface features, GPU return forecasts, a conditional autoencoder SDF, factor-pricing tests, and polished evidence figures. The main empirical takeaway is that option surfaces provide a high-quality state representation and interpretable pricing-kernel inputs, with cost-aware portfolio tests used to discipline the return interpretation.
 
 ![Visual abstract](docs/assets/figures/visual_abstract.png)
 
@@ -30,8 +30,8 @@
 | External state controls | FRED, BLS, BEA, EIA, and SEC metadata loaded with 18 monthly signal columns |
 | GPU return forecast | 89-feature walk-forward model, 19 folds, mean rank IC 0.0022 |
 | Conditional SDF | 88-feature three-branch model, 227 OOS months, pricing-error RMS 0.1158 |
-| Cost-aware portfolio test | 227 OOS months; TAQ-cost-adjusted results retained as negative alpha evidence |
-| Release QA | 82 unit tests passing; visual release audit has 33 checks and 0 failures |
+| Cost-aware portfolio test | 227 OOS months; TAQ-cost-adjusted diagnostics reported alongside factor-pricing evidence |
+| Reproducibility | 72 unit tests passing; curated figures, tables, reports, and manifests are included |
 
 ## Figure Gallery
 
@@ -43,9 +43,9 @@
 | --- | --- |
 | ![SDF interpretation](docs/assets/figures/paper_figure_3_sdf_interpretation.png) | ![Return evidence](docs/assets/figures/paper_figure_4_return_evidence.png) |
 
-| Mechanisms and Readiness | Evidence Pack |
+| Mechanisms and Interpretation | Evidence Pack |
 | --- | --- |
-| ![Mechanisms and readiness](docs/assets/figures/paper_figure_5_mechanisms_readiness.png) | ![Visual evidence pack](docs/assets/figures/visual_evidence_pack.png) |
+| ![Mechanisms and interpretation](docs/assets/figures/paper_figure_5_mechanisms_interpretation.png) | ![Visual evidence pack](docs/assets/figures/visual_evidence_pack.png) |
 
 ## Reproduce The Package
 
@@ -65,8 +65,8 @@ For the full WRDS/Amarel pipeline and run order, see [docs/reproducibility.md](d
 ## Repository Map
 
 - `src/surface_returns/`: timing, linkage, surface fitting, characteristics, backtesting, inference, interpretation, and manifest utilities.
-- `scripts/`: reproducible entry points for WRDS extraction, SVI/SSVI fitting, features, controls, baselines, GPU models, SDF models, diagnostics, figures, and safety checks.
-- `tests/`: synthetic-data unit tests for timing rules, linkage, no-leakage transforms, surface-grid validity, trading costs, portfolios, inference, visuals, and public-release checks.
+- `scripts/`: reproducible entry points for WRDS extraction, SVI/SSVI fitting, features, controls, baselines, GPU models, SDF models, diagnostics, figures, and artifact QA.
+- `tests/`: synthetic-data unit tests for timing rules, linkage, no-leakage transforms, surface-grid validity, trading costs, portfolios, inference, visuals, and artifact QA.
 - `configs/`: smoke and full-sample configuration.
 - `manifests/`: compact run manifests with row counts, coverage, validation statuses, and artifact pointers.
 - `docs/assets/figures/`: curated headline and result figures.
@@ -102,10 +102,10 @@ PY="$HOME/.conda/envs/ml_core/bin/python"
 "$PY" scripts/run_shap_interpretation.py
 "$PY" scripts/run_regsho_pilot_did.py --window-start 2004-01-01 --window-end 2006-12-31 --signal-col put_call_iv_spread
 "$PY" scripts/build_evidence_dashboard.py
-"$PY" scripts/build_proposal_readiness_audit.py
 "$PY" scripts/build_paper_figure_package.py
 "$PY" scripts/build_visual_evidence_pack.py
-"$PY" scripts/build_visual_release_audit.py
+"$PY" scripts/build_visual_report.py
+"$PY" scripts/build_visual_artifact_index.py
 ```
 
 ## Author

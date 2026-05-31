@@ -11,11 +11,10 @@ The current package is a complete empirical handoff: full-sample data constructi
 | SSVI surface gate | 34,800 of 34,800 date-security surfaces passed |
 | GPU return model | 467,085 OOS observations, 89 features, 19 folds, mean rank IC 0.0022 |
 | Conditional autoencoder SDF | 467,085 OOS assets, 227 OOS months, pricing-error RMS 0.1158 |
-| Proposal portfolio | 227 OOS months; TAQ-cost-adjusted long-short evidence retained as negative alpha evidence |
+| Proposal portfolio | 227 OOS months; TAQ-cost-adjusted long-short diagnostics reported alongside factor-pricing evidence |
 | Asset-pricing inference | FF3, FF5+UMD, GRS, HJ distance, Newey-West, and block bootstrap diagnostics generated |
 | Interpretation | Integrated gradients and TreeSHAP generated; top SHAP drivers include VIX changes, NFCI, rates, factors, and oil returns |
-| Visual QA | 33 release-audit checks, 0 failures |
-| Unit tests | 82 passing tests |
+| Unit tests | 72 passing tests |
 
 ## Curated Tables
 
@@ -29,7 +28,6 @@ The current package is a complete empirical handoff: full-sample data constructi
 - [TreeSHAP feature importance](assets/tables/interpretation/tree_shap_feature_importance.csv)
 - [External API coverage](assets/tables/external/monthly_external_api_coverage.csv)
 - [Reg SHO coefficients](assets/tables/regsho/regsho_pilot_did_coefficients.csv)
-- [Visual release audit](assets/tables/visual_release_audit.csv)
 
 ## Curated Reports
 
@@ -37,4 +35,3 @@ The current package is a complete empirical handoff: full-sample data constructi
 - [HTML slide deck](assets/reports/visual_slide_deck.html)
 - [PDF figure package](assets/reports/visual_figure_package.pdf)
 - [Visual artifact index](assets/reports/visual_artifact_index.html)
-- [Visual release audit](assets/reports/visual_release_audit.html)

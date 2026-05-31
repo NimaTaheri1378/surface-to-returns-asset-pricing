@@ -1,11 +1,6 @@
 {
   "status": "PASS",
-  "figure_png": "outputs/figures/full/visual_abstract.png",
-  "figure_svg": "outputs/figures/full/visual_abstract.svg",
-  "readiness_counts": {
-    "PASS": 15,
-    "NEGATIVE_RESULT": 3,
-    "PASS_WEAK_RESULT": 1
-  },
-  "return_evidence_label": "weak/negative"
+  "figure_png": "outputs\\figures\\full\\visual_abstract.png",
+  "figure_svg": "outputs\\figures\\full\\visual_abstract.svg",
+  "return_evidence_label": "cost-aware"
 }
