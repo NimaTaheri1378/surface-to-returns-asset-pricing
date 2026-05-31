@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "created_utc": "2026-05-31T21:01:20.170018+00:00",
+  "created_utc": "2026-05-31T21:09:25.064963+00:00",
   "artifact_count": 50,
   "csv": "outputs\\reports\\visual_artifact_index.csv",
   "html": "outputs\\reports\\visual_artifact_index.html",
   "zip": "outputs\\reports\\visual_artifact_bundle.zip",
-  "zip_sha256": "b470392ef0ad342d5bee418ae890778d47dde1f73e299ffca1a1bf443053fe9d",
-  "zip_bytes": 8103821,
+  "zip_sha256": "c630e22240605af32dbe10e3de8453acc59222fc7b151b8355bad8f1f3f61876",
+  "zip_bytes": 8033182,
   "artifacts": [
     {
       "path": "outputs/figures/full/asset_pricing_inference.png",
@@ -353,8 +353,8 @@
     {
       "path": "outputs/figures/full/visual_abstract.png",
       "kind": "visual_summary",
-      "bytes": 610284,
-      "sha256": "818e862fad03f25398ac0a6201c5c61d330deb7612d02a104721d9c69f90a86d",
+      "bytes": 564116,
+      "sha256": "945db8f7cbdd10358b30aae45942214362066dfdebafa0ac8faeca54640c881e",
       "width": 4260,
       "height": 2208,
       "pages": null
@@ -362,8 +362,8 @@
     {
       "path": "outputs/figures/full/visual_abstract.svg",
       "kind": "visual_summary",
-      "bytes": 209546,
-      "sha256": "b25e776ed82fe5206f4659d0bccf16b44d3d3a2d938bf12c3c2fcb98c2a55e0a",
+      "bytes": 194035,
+      "sha256": "3490e7fe588030e1a1767229dddb2ba7cdbba862a959905d43b942ceb0aafb9f",
       "width": 1277,
       "height": 662,
       "pages": null
@@ -407,8 +407,8 @@
     {
       "path": "outputs/reports/visual_figure_package.pdf",
       "kind": "pdf_package",
-      "bytes": 1326262,
-      "sha256": "3fe78a5df24472cb70fcee43948f66b969cf16afd7a6be89efc7c888a4160ff5",
+      "bytes": 1303669,
+      "sha256": "20b362d480fc366be32570b3b494cf3e59e7a0c6f9deee5a3faa362e9329a382",
       "width": null,
       "height": null,
       "pages": 9

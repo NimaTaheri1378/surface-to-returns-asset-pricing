@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import textwrap
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -99,10 +100,11 @@ def draw_metric_card(
 ) -> None:
     draw_round_rect(ax, x, y, w, h, PALETTE["panel"], PALETTE["line"])
     ax.add_patch(Rectangle((x, y + h - 0.018), w, 0.018, transform=ax.transAxes, color=color, lw=0))
-    value_size = 16 if len(value) <= 10 else 13
-    ax.text(x + 0.018, y + h - 0.033, label.upper(), transform=ax.transAxes, color=PALETTE["muted"], fontsize=7.5, weight="bold", va="top")
-    ax.text(x + 0.018, y + 0.050, value, transform=ax.transAxes, color=PALETTE["ink"], fontsize=value_size, weight="bold", va="bottom")
-    ax.text(x + 0.018, y + 0.020, detail, transform=ax.transAxes, color=PALETTE["muted"], fontsize=8.2, va="bottom", linespacing=1.15)
+    value_size = 16 if len(value) <= 8 else 13 if len(value) <= 14 else 11.3
+    pad = 0.020
+    ax.text(x + pad, y + h - 0.033, label.upper(), transform=ax.transAxes, color=PALETTE["muted"], fontsize=7.4, weight="bold", va="top")
+    ax.text(x + pad, y + 0.052, value, transform=ax.transAxes, color=PALETTE["ink"], fontsize=value_size, weight="bold", va="bottom")
+    ax.text(x + pad, y + 0.021, detail, transform=ax.transAxes, color=PALETTE["muted"], fontsize=8.0, va="bottom", linespacing=1.12)
 
 
 def draw_pipeline(ax, labels: list[str], x0: float, y: float, total_w: float) -> None:
@@ -111,15 +113,16 @@ def draw_pipeline(ax, labels: list[str], x0: float, y: float, total_w: float) ->
     colors = [PALETTE["blue"], PALETTE["teal"], PALETTE["purple"], PALETTE["orange"], PALETTE["gold"], PALETTE["green"]]
     for idx, label in enumerate(labels):
         x = x0 + idx * (w + gap)
-        draw_round_rect(ax, x, y, w, 0.082, "#ffffff", PALETTE["line"])
-        ax.add_patch(Rectangle((x, y), 0.008, 0.082, transform=ax.transAxes, color=colors[idx % len(colors)], lw=0))
-        ax.text(x + 0.018, y + 0.051, f"{idx + 1}", transform=ax.transAxes, color=colors[idx % len(colors)], fontsize=12, weight="bold", va="center")
-        ax.text(x + 0.044, y + 0.052, label, transform=ax.transAxes, color=PALETTE["ink"], fontsize=8.8, va="center", linespacing=1.15)
+        h = 0.088
+        draw_round_rect(ax, x, y, w, h, "#ffffff", PALETTE["line"])
+        ax.add_patch(Rectangle((x, y), 0.008, h, transform=ax.transAxes, color=colors[idx % len(colors)], lw=0))
+        ax.text(x + 0.018, y + h / 2, f"{idx + 1}", transform=ax.transAxes, color=colors[idx % len(colors)], fontsize=12, weight="bold", va="center")
+        ax.text(x + 0.045, y + h / 2, label, transform=ax.transAxes, color=PALETTE["ink"], fontsize=8.4, va="center", linespacing=1.08)
         if idx < len(labels) - 1:
             arrow_x = x + w + gap * 0.28
             ax.add_patch(
                 Polygon(
-                    [[arrow_x, y + 0.041], [arrow_x + gap * 0.32, y + 0.052], [arrow_x + gap * 0.32, y + 0.030]],
+                    [[arrow_x, y + h / 2], [arrow_x + gap * 0.32, y + h / 2 + 0.012], [arrow_x + gap * 0.32, y + h / 2 - 0.012]],
                     closed=True,
                     transform=ax.transAxes,
                     facecolor=PALETTE["line"],
@@ -171,19 +174,16 @@ def draw_wealth_panel(ax, proposal: pd.DataFrame) -> None:
 def draw_takeaway_panel(ax, external: dict) -> None:
     ax.axis("off")
     draw_round_rect(ax, 0.0, 0.0, 1.0, 1.0, "#f8fbf7", "none")
-    ax.text(0.045, 0.86, "Research Takeaway", transform=ax.transAxes, fontsize=13, weight="bold", color=PALETTE["ink"])
-    sources = ",".join(external.get("control_sources_passed", [])) or "macro controls"
+    ax.text(0.070, 0.86, "Research Takeaway", transform=ax.transAxes, fontsize=12.6, weight="bold", color=PALETTE["ink"])
     lines = [
-        "Option surfaces form a clean state representation.",
-        "SSVI constraints hold across the full usable sample.",
-        "SDF diagnostics and interpretation anchor the asset-pricing evidence.",
-        f"External state controls: {sources}.",
-        "Cost-aware portfolio tests discipline the return interpretation.",
+        "Option surfaces form clean pricing states.",
+        "SSVI gates pass across 1996-2024.",
+        "SDF diagnostics anchor the evidence.",
+        "Cost-aware tests discipline returns.",
     ]
-    y = 0.70
-    for line in lines:
-        ax.text(0.065, y, f"- {line}", transform=ax.transAxes, fontsize=9.6, color=PALETTE["ink"], va="top", wrap=True)
-        y -= 0.135
+    for y, line in zip([0.68, 0.51, 0.34, 0.17], lines):
+        wrapped = textwrap.fill(f"- {line}", width=36, subsequent_indent="  ")
+        ax.text(0.080, y, wrapped, transform=ax.transAxes, fontsize=8.7, color=PALETTE["ink"], va="top", linespacing=1.12)
 
 
 def external_detail(external: dict) -> str:
@@ -252,7 +252,7 @@ def main() -> int:
         ("Characteristics", fmt_int(len(chars.get("characteristics", []))), f"{fmt_int(chars.get('panel_rows'))} firm-month rows", PALETTE["purple"]),
         ("SDF", fmt_float(sdf.get("pricing_error", {}).get("rms"), 3), f"{fmt_int(sdf.get('oos_months'))} OOS months", PALETTE["teal"]),
         ("Return evidence", return_label, f"net {fmt_pct(portfolio.get('net', {}).get('mean_monthly_return'), 2)}/mo", return_color),
-        ("External controls", ",".join(external.get("control_sources_passed", [])) or "none", external_detail(external), PALETTE["orange"]),
+        ("External controls", "/".join(external.get("control_sources_passed", [])) or "none", external_detail(external), PALETTE["orange"]),
     ]
     x = 0.052
     w = 0.142
@@ -263,30 +263,30 @@ def main() -> int:
     draw_pipeline(
         canvas,
         [
-            "WRDS extraction\nand linkage",
-            "SVI/SSVI\nsurface gates",
-            "Characteristics\nand state controls",
-            "GPU return\nand SDF models",
-            "TAQ costs\nand portfolios",
-            "Inference and\ninterpretation",
+            "WRDS\nlinkage",
+            "Surface\ngates",
+            "Firm/state\nfeatures",
+            "GPU/SDF\nmodels",
+            "TAQ-cost\nportfolios",
+            "Inference &\ninterpretation",
         ],
         0.052,
-        0.612,
+        0.606,
         0.896,
     )
 
     ax_wealth = fig.add_axes([0.063, 0.185, 0.455, 0.34])
     draw_wealth_panel(ax_wealth, proposal)
 
-    ax_status = fig.add_axes([0.565, 0.30, 0.195, 0.225])
+    ax_status = fig.add_axes([0.558, 0.31, 0.185, 0.215])
     draw_model_diagnostics(ax_status, gpu, portfolio, sdf)
 
-    ax_takeaway = fig.add_axes([0.785, 0.185, 0.165, 0.34])
+    ax_takeaway = fig.add_axes([0.765, 0.185, 0.190, 0.34])
     draw_takeaway_panel(ax_takeaway, external)
 
-    draw_round_rect(canvas, 0.552, 0.185, 0.218, 0.072, "#f8fbf7", PALETTE["line"])
+    draw_round_rect(canvas, 0.552, 0.185, 0.198, 0.072, "#f8fbf7", PALETTE["line"])
     canvas.text(0.568, 0.229, "Evidence summary", transform=canvas.transAxes, fontsize=10, color=PALETTE["muted"], weight="bold")
-    canvas.text(0.568, 0.199, "surfaces pass; SDF interprets; costs matter", transform=canvas.transAxes, fontsize=10.5, color=PALETTE["ink"])
+    canvas.text(0.568, 0.199, "surfaces pass; SDF interprets", transform=canvas.transAxes, fontsize=10.5, color=PALETTE["ink"])
 
     canvas.text(
         0.052,
